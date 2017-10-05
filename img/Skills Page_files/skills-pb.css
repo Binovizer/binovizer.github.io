@@ -1,0 +1,23 @@
+*{
+    position: relative;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+#skillset{
+    height: 100vh;
+    color: #ACACAC;
+    background-color: black;
+}
+
+#skillset h4{
+    color: white;
+}
+
+#skillset .progress{
+    background-color: white;
+}
+
+#skillset .progress-bar{
+    background-color: yellow;
+}

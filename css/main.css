@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Saira');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+/* @import url('https://fonts.googleapis.com/css?family=Mukta'); */
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    list-style: none;
+    position: relative;
+}
+
+body{
+    font-family: 'Work Sans', sans-serif;
+    background-color: rgb(10, 10, 10);
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Saira', sans-serif;
+}
+
+.highlight{
+    color: #FEF11D;
+    font-weight: 500;
+    cursor: pointer;
+}
+.sub{
+    font-size: 12px;
+}

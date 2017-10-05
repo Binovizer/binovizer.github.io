@@ -1,0 +1,30 @@
+#about{
+    width: 100%;
+    text-align: center;
+    color: #A7A7A7;
+    background-color: rgb(10, 10, 10);
+	margin:0;
+    padding:0;
+}
+
+#about .card{
+    background-color: transparent;
+    border: none;
+    margin: 15px;
+    padding: 10px;
+}
+
+#about .card .card-img-top{
+    max-width: 100%;
+    margin: 0px auto;
+    padding-bottom: 20px;
+}
+#about .card .card-title{
+    -webkit-transition: color 500ms linear;
+    -moz-transition: color 500ms linear;
+    transition: color 500ms linear;
+}
+#about .card .card-title:hover{
+    color: yellow;
+    cursor: pointer;
+}

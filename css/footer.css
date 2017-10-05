@@ -1,0 +1,45 @@
+footer{
+    color: #C5C5C5;
+}
+
+.social a.i-wrap{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: black;
+    display: inline-block;
+    color: #C5C5C5;
+}
+
+.social .i-wrap i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.social a.i-wrap:hover{
+    color: white;
+}
+
+.social a.facebook-icon:hover{
+    background-color: #3b5999;
+}
+.social a.twitter-icon:hover{
+    background-color: #55acee;
+}
+.social a.linkedin-icon:hover{
+    background-color: #0077B5;
+}
+.social a.google-icon:hover{
+    background-color: #dd4b39;
+}
+.social a.github-icon:hover{
+    background-color: blueviolet;
+}
+
+.copyright a{
+    color: #0AADDE;
+    text-decoration: none;
+}

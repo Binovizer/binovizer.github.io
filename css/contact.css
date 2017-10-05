@@ -1,0 +1,34 @@
+#contact{
+    color: white;
+    background-color: black;
+}
+
+.cinput-wrapper input, .cinput-wrapper textarea {
+    position: relative;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(20, 20, 20);
+}
+
+.cinput-wrapper input:focus, .cinput-wrapper textarea:focus{
+    background-color: rgb(20, 20, 20);
+    color: white;
+}
+
+#contact input, #contact textarea { 
+    font-family: 'FontAwesome', 'Work Sans'; 
+} /* This is for the placeholder */
+
+#contact button{
+    padding: 15px 50px;
+    background-color: #0AADDE;
+    color: white;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    transition: all 300ms linear;
+}
+
+#contact button:hover{
+    background-color: rgb(71, 65, 65);
+    color: white;
+}
