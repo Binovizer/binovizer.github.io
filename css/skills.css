@@ -1,11 +1,13 @@
 #skillset{
+    z-index: 10;
     color: #B1B1B1;
     background-color: rgb(10, 10, 10);
 }
 
 #skillset h4{
-    color: #00F273;
-    /* color: #0AADDfE; */
+    color: #C7C7C7;
+    /* color: #00F273; */
+    /* color: #0AADDE; */
 }
 
 #skillset .skill{
@@ -18,13 +20,13 @@
 
 #skillset .progress-bar{
     /* background-color: yellow; */
-    background-color: #00F273;
+    background-color: yellow;
     /* background-color: #4DCCC3; */
 }
 
 #skillset .r-buttons{
     text-transform: uppercase;
-    color: #00F273;
+    color: #C7C7C7;
     background-color: black;
     font-weight: normal;
     border-radius: 10px;

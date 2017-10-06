@@ -1,0 +1,59 @@
+.background{
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: url("./../img/tumblr_static_bg3.png") repeat center center;
+    background-size: contain;
+    animation: animate-bg 10s linear 200ms infinite;
+    filter: opacity(0.4);
+}
+
+@-webkit-keyframes animate-bg {
+	from {
+        background-position:0 0;
+    }
+	to {
+        background-position: -500px 0;
+    }
+}
+ 
+@-moz-keyframes animate-bg {
+	from {
+        background-position:0 0;
+    }
+	to {
+        background-position: -500px 0;
+    }
+}
+ 
+@-ms-keyframes animate-bg {
+	from {
+        background-position:0 0;
+    }
+	to {
+        background-position: -500px 0;
+    }
+}
+ 
+@-o-keyframes animate-bg {
+	from {
+        background-position:0 0;
+    }
+	to {
+        background-position: -500px 0;
+    }
+}
+ 
+@keyframes animate-bg {
+	from {
+        background-position:0 0;
+    }
+	to {
+        background-position: -500px 0;
+    }
+}
+
