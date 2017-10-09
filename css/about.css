@@ -1,11 +1,14 @@
 #about{
     z-index: 10;
     width: 100%;
-    text-align: center;
     color: #A7A7A7;
     background-color: rgb(10, 10, 10);
 	margin:0;
     padding:0;
+}
+
+#about .about-text{
+    text-align: center;
 }
 
 #about .card{
@@ -13,6 +16,7 @@
     border: none;
     margin: 15px;
     padding: 10px;
+    text-align: center;
 }
 
 #about .card .card-img-top{
@@ -28,4 +32,35 @@
 #about .card .card-title:hover{
     color: yellow;
     cursor: pointer;
+}
+
+#about .resume p{
+    color: rgb(119, 119, 119);
+}
+#about .resume h4{
+    color: yellow;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#about hr{
+    height: 1px;
+    width: 90%;
+    border-color: rgba(255, 255, 255, 0.096);
+    border-style: dotted;
+}
+
+#about .resume-btn{
+    background-color: black;
+    padding: 20px 20px;
+    border-radius: 10px;
+    color: rgb(204, 204, 204);
+    text-transform: uppercase;
+    border-bottom: 1px dotted white;
+    transition: all 1s;
+}
+#about .resume-btn:hover{
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
 }
