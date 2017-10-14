@@ -7,7 +7,7 @@
     
     <!-- Website Title -->
     <title>Mohd Nadeem</title>
-    <link rel="shortcut icon" href="./favicon.ico" />
+    <li rel="shortcut icon" href="./favicon.ico" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -80,7 +80,9 @@
     
     <!-- Home Section -->
     <div id="home">
-        
+        <div class="wow bounceInLeft logoContainer">
+            <img class="logo" src="img/logo.png">
+        </div>
     </div>
 
     <!-- About Section -->
@@ -148,6 +150,79 @@
     
     <div id="work" class="py-4">
         <h1 style="color:#EA0357;">work</h1>
+        <div class="work-list row text-center py-4">
+            <div class="buttonList mx-auto">
+                <button class="btn selected" id="allButton">all</button>
+                <button class="btn" id="webButton">web</button>
+                <button class="btn" id="desktopButton">desktop</button>
+                <button class="btn" id="apiButton">api</button>
+            </div>
+        </div>
+        <ul class="grid cs-style-3">
+            <li class="wow zoomIn all web"  data-wow-offset="100">
+                <figure>
+                    <img src="img/work-test-engine.png" alt="Test Engine">
+                    <figcaption>
+                        <h5>Test Engine</h5>
+                        <a href="#">Web</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="wow zoomIn all web" data-wow-offset="100">
+                <figure>
+                    <img src="img/work-shoppersdealpoint-com.png" alt="ShoppersDealPoint">
+                    <figcaption>
+                        <h5>ShoppersDealPoint</h5>
+                        <a href="#">Web</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="wow zoomIn all web desktop" data-wow-offset="100">
+                <figure>
+                    <img src="img/work-code-player.png" alt="Code Player">
+                    <figcaption>
+                        <h5>Code Player</h5>
+                        <a href="#">Web</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="wow zoomIn all desktop" data-wow-offset="100">
+                <figure>
+                    <img src="img/work-hangman.PNG" alt="Hangman">
+                    <figcaption>
+                        <h5>Hangman</h5>
+                        <a href="#">Python (PyQt)</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="wow zoomIn all desktop" data-wow-offset="100">
+                <figure>
+                    <img src="img/work-loan-management-system.jpg" alt="Loan Management System">
+                    <figcaption>
+                        <h5>Loan Management System</h5>
+                        <a href="#">Java (Swing)</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="wow zoomIn all api" data-wow-offset="100">
+                <figure>
+                    <img src="img/work-rest-api.png" alt="Rest API">
+                    <figcaption>
+                        <h5>Android App Rest API</h5>
+                        <a href="#">Java (Jersey)</a>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="wow zoomIn all api" data-wow-offset="100">
+                <figure>
+                    <img src="img/work-todo.PNG" alt="Todo API">
+                    <figcaption>
+                        <h5>Todo Rest API (Node JS)</h5>
+                        <a href="#">Node Js, MongoDB</a>
+                    </figcaption>
+                </figure>
+            </li>
+        </ul>
     </div>
 
     <!-- Contact Form -->
@@ -225,7 +300,11 @@
     <!-- Hanging Bulb on off -->
     <script type="text/javascript" src="./js/hanging-bulb.js"></script>
 
-    <script type="text/javascript" src="./js/timeline.js"></script>
+    <script type="text/javascript" src="./js/home.js"></script>
+
+    <script type="text/javascript" src="./js/work.js"></script>
+
+    <!-- <script type="text/javascript" src="./js/timeline.js"></script> -->
 
 </body>
 </html>
