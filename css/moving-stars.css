@@ -1,0 +1,33 @@
+#bg-back {
+	background: url(../img/background.png) repeat 5% 5%;
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	/* z-index: 100; */
+	animation: back-animate 480s infinite linear;
+}
+
+#bg-mid{
+	background: url(../img/midground.png) repeat 20% 20%;
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	/* z-index: 100; */
+	animation: back-animate 240s infinite linear;
+}
+
+#bg-fore {
+	background: url(../img/foreground.png) repeat 90% 110%;
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	/* z-index: 200; */
+	animation: back-animate 120s infinite linear;
+}
+
+@keyframes back-animate{
+	from{
+		background-position: 0px 0px;
+	}
+	to{
+		background-position: -10000px -2000px;
+	}
+}
+

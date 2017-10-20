@@ -16,13 +16,20 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    height: 65px;
-    width: 65px;
+    height: 60px;
+    width: 60px;
     animation: rotate3D 8s infinite linear 2s;
 }
 
 @keyframes rotate3D{
     to{
         transform: rotateY(360deg);
+    }
+}
+
+@media screen and (max-width: 567px){
+    #home .logo{
+        width: 40px;
+        height: 40px;
     }
 }

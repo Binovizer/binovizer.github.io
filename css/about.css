@@ -5,6 +5,7 @@
     background-color: rgb(10, 10, 10);
 	margin:0;
     padding:0;
+    overflow: hidden;
 }
 
 #about .about-text{
@@ -33,6 +34,7 @@
     color: yellow;
     cursor: pointer;
 }
+
 
 #about .resume p{
     color: rgb(119, 119, 119);

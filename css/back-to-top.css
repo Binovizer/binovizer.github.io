@@ -1,0 +1,33 @@
+.back-to-top{
+    position: fixed;
+    z-index: 1000;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    background-color: rgb(43, 43, 43);
+    visibility: hidden;
+    transition: visibility 1s, opacity 400ms;
+}
+
+.back-to-top i{
+    position: absolute;
+    color: rgb(155, 155, 155);
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 768px){
+    .back-to-top{
+        bottom: 20px;
+        right: 20px;
+        width: 54px;
+        height: 54px;
+    }
+    .back-to-top i{
+        font-size: 40px;
+    }
+}

@@ -10,9 +10,9 @@ var TxtType = function(el, toRotate, period) {
 
 TxtType.prototype.tick = function() {
     var i = this.loopNum % this.toRotate.length;
-    console.log(i);
+    // console.log(i);
     var fullTxt = this.toRotate[i];
-    console.log(fullTxt);
+    // console.log(fullTxt);
 
     if (this.isDeleting) {
         this.txt = fullTxt.substring(0, this.txt.length - 1);

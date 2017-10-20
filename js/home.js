@@ -5,8 +5,8 @@ $(document).ready(function(){
         if (currentScroll >= fixMetop) {
             $('#home .logoContainer').css({
                 position: 'fixed',
-                top: '20px',
-                left: '20px',
+                top: '0px',
+                left: '0px',
                 zIndex: '9999'
             });
         } else {

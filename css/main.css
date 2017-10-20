@@ -16,6 +16,7 @@ body{
     background-color: rgb(10, 10, 10);
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 h1{
@@ -24,6 +25,12 @@ h1{
     font-size: 100px;
     margin: 0;
     padding: 0;
+}
+
+ol, ul{
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
 }
 
 h2, h3, h4, h5, h6, .btn{
@@ -35,9 +42,11 @@ h2, h3, h4, h5, h6, .btn{
     font-weight: 500;
     cursor: pointer;
 }
-.sub{
+
+small{
     font-size: 12px;
 }
+
 
 .clear{
     clear: both;
