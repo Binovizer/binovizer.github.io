@@ -1,0 +1,10 @@
+.pace-running .content{
+    opacity: 0;
+}
+.pace-done .content{
+    opacity: 1;
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    transition: opacity 1s linear;
+}

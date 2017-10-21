@@ -20,7 +20,7 @@ Main Components
 .cd-horizontal-timeline {
   font-family: 'Mukta', sans-serif;
   color: #A7A7A7;
-  background-color: rgb(10, 10, 10);
+  /* background-color: rgb(10, 10, 10); */
   opacity: 0;
   -webkit-transition: opacity 0.2s;
   -moz-transition: opacity 0.2s;

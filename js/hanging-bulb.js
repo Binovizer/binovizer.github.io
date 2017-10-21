@@ -5,6 +5,7 @@ $(document).ready(function(){
             $("#landing #character").css("opacity", "0");
             $("#landing #chatBox").css("opacity", "0");
             $("#landing #back-to-work").css("opacity", "1");
+
         }else{
             $("#landing #character").css("opacity", "1");
             $("#landing #chatBox").css("opacity", "1");

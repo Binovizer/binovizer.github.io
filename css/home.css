@@ -32,4 +32,8 @@
         width: 40px;
         height: 40px;
     }
+    #home .logoContainer{
+        width: 50px;
+        height: 65px;
+    }
 }

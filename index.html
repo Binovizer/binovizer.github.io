@@ -16,6 +16,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 
+    <!-- Pace Configuration -->
+    <script src="./js/pace.js"></script>
+    <link href="./css/pace-theme-center-circle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/pace-progress.css">
+
     <!-- WOW Animation -->
     <link rel="stylesheet" href="css/wow-animate.css">
     
@@ -41,382 +46,322 @@
     
 </head>
 <body>
-
-    <div id="bg-back"></div>
-	<div id="bg-mid"></div>
-	<div id="bg-fore"></div>
-    <!-- <div class="background"></div> -->
-    <!-- <canvas></canvas> -->
-
-    <!-- Hanging Bulb on the right -->
-    <div class="bulb-container">
-        <div class="rope">
-            <div class="glue"></div>
-            <div class="bulb"></div>
-        </div>
-    </div>
-
-    <!-- Circular Navigation -->
-    <button class="cn-button" id="cn-button">+</button>
-    <div class="cn-wrapper" id="cn-wrapper">
-        <ul>
-            <li><a href="#work"><span class="fa fa-briefcase"></span></a></li>
-            <li><a href="#about"><span class="fa fa-info-circle"></span></a></li>
-            <li><a href="#landing"><span class="fa fa-home"></span></a></li>
-            <li><a href="./res/Mohd Nadeem Updated Resume.pdf" download><span class="fa fa-file-pdf-o"></span></a></li>
-            <li><a href="https://www.linkedin.com/in/binovizer/" target="_blank"><span class="fa fa-linkedin"></span></a></li>
-        </ul>
-    </div>
-    <div id="cn-overlay" class="cn-overlay"><p>Click anywhere to EXIT</p></div>
-
-    <!-- To top button -->
-    <a href="#landing" class="back-to-top">
-        <i class="fa fa-angle-double-up"></i>
-    </a>
-
-
-    <!-- Landing Section -->
-    <div id="landing">
-        <!-- ChatBox -->
-        <div id="chatBox">
-            <a href="" class="typewrite" data-period="1000" data-type='[ "Hello there!", "I am Mohd Nadeem.", "I am an App & Web Developer.", "Scroll down to know more", "Do not forget the lights" ]'>
-                <span class="wrap"><span class="blinking-cursor">|</span></span>
-            </a>
-        </div>
-        <!-- Character -->
-        <img src="img/2-emotion-2.png" id="character" class="img-fluid">
-
-        <!-- Image after turning light on -->
-        <div id="back-to-work">
-            <div class="desk-image img-fluid"></div>
-        </div>
-    </div>
+    <div class="content">
+        <!-- Moving Stars Background -->
+        <div id="bg-back"></div>
+        <div id="bg-mid"></div>
+        <div id="bg-fore"></div>
+        
+        <!-- <div class="background"></div> -->
+        <!-- <canvas></canvas> -->
     
-    <!-- Home Section -->
-    <div id="home">
-        <div class="wow bounceInLeft logoContainer">
-            <img class="logo" src="img/logo.png">
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <div id="about" class="py-4">
-        
-        <h1 style="color:yellow;">about</h1>
-        <!-- About Text -->
-        <div class="row no-gutters py-3">
-            <div class="col-10 col-sm-8 col-md-7 mx-auto">
-                <p class="about-text">
-                    My name is <span class="highlight">Mohd Nadeem</span>. I am a Application and Web Developer based in New Delhi, India  who builds awesome applications for my employers. I've recently <span class="highlight">graduated in IT</span> and now actively Seeking a challenging role with a growing IT Company.
-                </p>
+        <!-- Hanging Bulb on the right -->
+        <div class="bulb-container">
+            <div class="rope">
+                <div class="glue"></div>
+                <div class="bulb"></div>
             </div>
         </div>
-        
-        <!-- Services grid -->
-        <div class="row no-gutters py-5">
-            <div class="card-deck col-10 mx-auto">
-                <div class="card wow bounceInLeft" data-wow-offset="100">
-                    <img class="card-img-top" src="img/top-grid-pic1.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Designer</h4>
-                        <p class="card-text">I design!</p>
-                    </div>
-                </div>
-                <div class="card wow bounceInLeft" data-wow-offset="100">
-                    <img class="card-img-top" src="img/top-grid-pic2.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Thinker</h4>
-                        <p class="card-text">I explore!</p>
-                    </div>
-                </div>
-                <div class="card wow bounceInLeft" data-wow-offset="100">
-                    <img class="card-img-top" src="img/top-grid-pic3.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Developer</h4>
-                        <p class="card-text">I implement!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- The Timeline -->
-        <section class="cd-horizontal-timeline py-5">
-            <h6 class="wow swing" data-wow-offset="200">Education - Go through the timeline <small>click on the dates</small></h6>
-            <div class="timeline wow swing" data-wow-offset="200">
-                <div class="events-wrapper">
-                    <div class="events">
-                        <ol>
-                            <li><a href="#0" data-date="16/01/2014" class="selected">16 Jan</a></li>
-                            <li><a href="#0" data-date="28/02/2014">28 Feb</a></li>
-                            <li><a href="#0" data-date="20/04/2014">20 Mar</a></li>
-                            <li><a href="#0" data-date="20/05/2014">20 May</a></li>
-                            <li><a href="#0" data-date="09/07/2014">09 Jul</a></li>
-                            <li><a href="#0" data-date="30/08/2014">30 Aug</a></li>
-                            <li><a href="#0" data-date="15/09/2014">15 Sep</a></li>
-                            <li><a href="#0" data-date="01/11/2014">01 Nov</a></li>
-                            <li><a href="#0" data-date="10/12/2014">10 Dec</a></li>
-                            <li><a href="#0" data-date="19/01/2015">29 Jan</a></li>
-                            <li><a href="#0" data-date="03/03/2015">3 Mar</a></li>
-                        </ol>
-        
-                        <span class="filling-line" aria-hidden="true"></span>
-                    </div> <!-- .events -->
-                </div> <!-- .events-wrapper -->
-                    
-                <ul class="cd-timeline-navigation">
-                    <li><a href="#0" class="prev inactive">Prev</a></li>
-                    <li><a href="#0" class="next">Next</a></li>
-                </ul> <!-- .cd-timeline-navigation -->
-            </div> <!-- .timeline -->
-        
-            <div class="events-content">
-                <ol>
-                    <li class="selected" data-date="16/01/2014">
-                        <h2>Horizontal Timeline</h2>
-                        <em>January 16th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="28/02/2014">
-                        <h2>Event title here</h2>
-                        <em>February 28th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="20/04/2014">
-                        <h2>Event title here</h2>
-                        <em>March 20th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="20/05/2014">
-                        <h2>Event title here</h2>
-                        <em>May 20th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="09/07/2014">
-                        <h2>Event title here</h2>
-                        <em>July 9th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="30/08/2014">
-                        <h2>Event title here</h2>
-                        <em>August 30th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="15/09/2014">
-                        <h2>Event title here</h2>
-                        <em>September 15th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="01/11/2014">
-                        <h2>Event title here</h2>
-                        <em>November 1st, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="10/12/2014">
-                        <h2>Event title here</h2>
-                        <em>December 10th, 2014</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="19/01/2015">
-                        <h2>Event title here</h2>
-                        <em>January 19th, 2015</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-        
-                    <li data-date="03/03/2015">
-                        <h2>Event title here</h2>
-                        <em>March 3rd, 2015</em>
-                        <p>	
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
-                        </p>
-                    </li>
-                </ol>
-            </div> <!-- .events-content -->
-        </section>
-      
-
-        <div class="clear"></div>
-
-        <div class="row mb-5 resume web-resume mx-auto">
-            <div class="col-10 col-sm-4 col-md-3 mx-auto my-5 wow bounceInLeft" data-wow-offset="100">
-                <img src="img/web-dev-skills.png" alt="Web Developer Skills" class="img-fluid">
-            </div>
-            <div class="col-12 col-sm-6 col-md-7 mx-auto my-auto">
-                <h4>Web Developer Skills</h4>
-                <p>- HTML5 - CSS3 - Javascript - JavaEE - jQuery - Wordpress - NodeJS - Bootstrap - </p>
-                <a href="#" class="btn mt-4 resume-btn">Web Developer Resume</a>
-            </div>
-        </div>
-        <hr>
-        <div class="row py-2 resume app-resume mx-auto">
-            <div class="col-12 col-sm-6 col-md-6 mx-auto my-auto">
-                <h4>App Developer Skills</h4>
-                <p>- Java - Python - C++ - R - SQL - Jersey - Hibernate - Struts 2 - </p>
-                <a href="#" class="btn mt-4 resume-btn">App Developer Resume</a>
-            </div>
-            <div class="col-12 col-sm-4 col-md-4 mx-auto my-5 wow bounceInRight" data-wow-offset="100">
-                <img src="img/app-dev-skills.png" alt="Web Developer Skills" class="img-fluid">
-            </div>
-        </div>
-    </div>
     
-    <div id="work" class="py-4">
-        <h1 style="color:#EA0357;">work</h1>
-        <div class="work-list row text-center py-4">
-            <div class="buttonList mx-auto">
-                <button class="btn selected" id="allButton">all</button>
-                <button class="btn" id="webButton">web</button>
-                <button class="btn" id="desktopButton">desktop</button>
-                <button class="btn" id="apiButton">api</button>
+        <!-- Circular Navigation -->
+        <button class="cn-button" id="cn-button">+</button>
+        <div class="cn-wrapper" id="cn-wrapper">
+            <ul>
+                <li><a href="#work"><span class="fa fa-briefcase"></span></a></li>
+                <li><a href="#about"><span class="fa fa-id-card"></span></a></li>
+                <li><a href="#landing"><span class="fa fa-home"></span></a></li>
+                <li><a href="./res/Mohd Nadeem Updated Resume.pdf" download><span class="fa fa-file-pdf-o"></span></a></li>
+                <li><a href="https://www.linkedin.com/in/binovizer/" target="_blank"><span class="fa fa-linkedin"></span></a></li>
+            </ul>
+        </div>
+        <div id="cn-overlay" class="cn-overlay"><p>Click anywhere to EXIT</p></div>
+    
+        <!-- To top button -->
+        <a href="#landing" class="back-to-top">
+            <i class="fa fa-angle-double-up"></i>
+        </a>
+    
+    
+        <!-- Landing Section -->
+        <div id="landing">
+            <!-- ChatBox -->
+            <div id="chatBox">
+                <a href="" class="typewrite" data-period="1000" data-type='[ "Hello there!", "I am Mohd Nadeem.", "I am an App & Web Developer.", "Scroll down to know more", "Do not forget the lights" ]'>
+                    <span class="wrap"><span class="blinking-cursor">|</span></span>
+                </a>
+            </div>
+            <!-- Character -->
+            <img src="img/2-emotion-2.png" id="character" class="img-fluid">
+    
+            <!-- Image after turning light on -->
+            <div id="back-to-work">
+                <div class="desk-image img-fluid"></div>
+    
             </div>
         </div>
-        <ul class="grid cs-style-3">
-            <li class="wow zoomIn all web"  data-wow-offset="100">
-                <figure>
-                    <img class="img-fluid" src="img/work-test-engine.png" alt="Test Engine">
-                    <figcaption>
-                        <h5>Test Engine</h5>
-                        <a href="#work">Web</a>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="wow zoomIn all web" data-wow-offset="100">
-                <figure>
-                    <img class="img-fluid" src="img/work-shoppersdealpoint-com.png" alt="ShoppersDealPoint">
-                    <figcaption>
-                        <h5>ShoppersDealPoint</h5>
-                        <a href="#work">Web</a>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="wow zoomIn all web desktop" data-wow-offset="100">
-                <figure>
-                    <img class="img-fluid" src="img/work-code-player.png" alt="Code Player">
-                    <figcaption>
-                        <h5>Code Player</h5>
-                        <a href="#work">Web</a>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="wow zoomIn all desktop" data-wow-offset="100">
-                <figure>
-                    <img class="img-fluid" src="img/work-hangman.PNG" alt="Hangman">
-                    <figcaption>
-                        <h5>Hangman</h5>
-                        <a href="#work">Python (PyQt)</a>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="wow zoomIn all desktop" data-wow-offset="100">
-                <figure>
-                    <img class="img-fluid" src="img/work-loan-management-system.jpg" alt="Loan Management System">
-                    <figcaption>
-                        <h5>Loan Management System</h5>
-                        <a href="#work">Java (Swing)</a>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="wow zoomIn all api" data-wow-offset="100">
-                <figure>
-                    <img class="img-fluid" src="img/work-rest-api.png" alt="Rest API">
-                    <figcaption>
-                        <h5>Android App Rest API</h5>
-                        <a href="#work">Java (Jersey)</a>
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="wow zoomIn all api" data-wow-offset="100">
-                <figure>
-                    <img class="img-fluid" src="img/work-todo.PNG" alt="Todo API">
-                    <figcaption>
-                        <h5>Todo Rest API (Node JS)</h5>
-                        <a href="#work">Node Js, MongoDB</a>
-                    </figcaption>
-                </figure>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Contact Form -->
-    <div id="contact" class="py-4">
-        <h1 style="color:#0AADDE;">connect</h1>
-        <p class="text-center">Want to start something together?</p>
-        <p class="text-center">E-mail me at <span class="highlight" style="color:#0AADDE;">mohd.nadeem3464@gmail.com</span></p>
-        <div class="row no-gutters">
-            <div class="col-md-6 p-3 mx-auto wow bounceInLeft">
-                <form action="https://formspree.io/mohd.nadeem3464@gmail.com" method="POST">
-                    <div class="input-group cinput-wrapper my-3">
-                        <!-- <div class="input-group-addon"><span class="fa fa-user"></span></div> -->
-                        <input type="text" class="form-control form-control-lg" name="name" placeholder="&#61447;  Name">
-                    </div>
-                    <div class="input-group cinput-wrapper my-3">
-                        <!-- <div class="input-group-addon"><span class="fa fa-envelope"></span></div> -->
-                        <input type="email" class="form-control form-control-lg" name="email" placeholder="&#61664;  Email">
-                    </div>
-                    <div class="input-group cinput-wrapper my-3">
-                        <!-- <div class="input-group-addon"><span class="fa fa-pencil"></span></div> -->
-                        <textarea type="text" class="form-control form-control-lg" rows="4" name="message" placeholder="&#61504;  Message"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-lg mx-auto d-block my-5">Send <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                </form>
+        
+        <!-- Home Section -->
+        <div id="home">
+            <div class="wow bounceInLeft logoContainer">
+                <img class="logo" src="img/logo.png">
             </div>
         </div>
-    </div>
-
-    <footer class="py-4">
-        <div class="container">
-            <div class="row">
-                <div class="social col-md-5 mr-auto wow tada">
-                    <a target="_blank" href="https://www.facebook.com/binovizer" class="i-wrap facebook-icon">
-                        <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
-                    </a>
-                    <a target="_blank" href="https://twitter.com/ascetic_me" class="i-wrap twitter-icon">
-                        <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-                    </a>
-                    <a target="_blank" href="https://plus.google.com/+MohdNadeem3464" class="i-wrap google-icon">
-                        <i class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
-                    </a>
-                    <a target="_blank" href="https://www.linkedin.com/in/binovizer/" class="i-wrap linkedin-icon">
-                        <i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
-                    </a>
-                    <a target="_blank" href="https://github.com/Binovizer/" class="i-wrap github-icon">
-                        <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-                    </a>
-                </div>
-                <div class="copyright col-md-3 ml-auto pt-3">
-                    <span>&copy; 2017 </span><a href="#landing">Mohd Nadeem</a>
+    
+        <!-- About Section -->
+        <div id="about" class="py-4">
+            
+            <h1 style="color:yellow;">about</h1>
+            <!-- About Text -->
+            <div class="row no-gutters py-3">
+                <div class="col-10 col-sm-8 col-md-7 mx-auto">
+                    <p class="about-text">
+                        My name is <span class="highlight">Mohd Nadeem</span>. I am a Application and Web Developer based in New Delhi, India  who builds awesome applications for my employers. I've recently <span class="highlight">graduated in IT</span> and now actively Seeking a challenging role with a growing IT Company.
+                    </p>
                 </div>
             </div>
+            
+            <!-- Services grid -->
+            <div class="row no-gutters py-5">
+                <div class="card-deck col-10 mx-auto">
+                    <div class="card wow bounceInLeft" data-wow-offset="100">
+                        <img class="card-img-top" src="img/top-grid-pic1.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">Designer</h4>
+                            <p class="card-text">I design!</p>
+                        </div>
+                    </div>
+                    <div class="card wow bounceInLeft" data-wow-offset="100">
+                        <img class="card-img-top" src="img/top-grid-pic2.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">Thinker</h4>
+                            <p class="card-text">I explore!</p>
+                        </div>
+                    </div>
+                    <div class="card wow bounceInLeft" data-wow-offset="100">
+                        <img class="card-img-top" src="img/top-grid-pic3.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">Developer</h4>
+                            <p class="card-text">I implement!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- The Timeline -->
+            <section class="cd-horizontal-timeline py-5">
+                <h6 class="wow swing" data-wow-offset="200">Education - Go through the timeline <small>click on the dates</small></h6>
+                <div class="timeline wow swing" data-wow-offset="200">
+                    <div class="events-wrapper">
+                        <div class="events">
+                            <ol>
+                                <li><a href="#0" data-date="01/06/2010" class="selected">1 Jun</a></li>
+                                <li><a href="#0" data-date="05/06/2012">5 Jun</a></li>
+                                <li><a href="#0" data-date="06/08/2013">6 Aug</a></li>
+                                <li><a href="#0" data-date="01/07/2017">1 Jul</a></li>
+                            </ol>
+                            <span class="filling-line" aria-hidden="true"></span>
+                        </div> <!-- .events -->
+                    </div> <!-- .events-wrapper -->
+                        
+                    <ul class="cd-timeline-navigation">
+                        <li><a href="#0" class="prev inactive">Prev</a></li>
+                        <li><a href="#0" class="next">Next</a></li>
+                    </ul> <!-- .cd-timeline-navigation -->
+                </div> <!-- .timeline -->
+            
+                <div class="events-content">
+                    <ol>
+                        <li class="selected" data-date="01/06/2010">
+                            <h2>High School (10th)</h2>
+                            <em>June 1st, 2010</em>
+                            <p>	
+                                Completed High School from <span class="highlight">JIC Pachenda, Muzaffarnagar</span>  as the <span class="highlight">second topper</span> of class.
+                            </p>
+                        </li>
+            
+                        <li data-date="05/06/2012">
+                            <h2>Intermediate (12th)</h2>
+                            <em>June 5th, 2012</em>
+                            <p>	
+                                Completed Intermediate from <span class="highlight">JIC Pachenda, Muzaffarnagar</span>  as the <span class="highlight">topper</span> of class.
+                            </p>
+                        </li>
+
+                        <li data-date="06/08/2013">
+                            <h2>Started Undergraduate</h2>
+                            <em>August 6th, 2013</em>
+                            <p>	
+                                Started Undergraduation at <span class="highlight">Dr. A.P.J. Abdul Kalam Technical University</span>  as the <span class="highlight">rank opener</span> (lowest rank) of Information Technology branch.
+                            </p>
+                        </li>
+                        <li data-date="01/07/2017">
+                            <h2>Completed Undergraduate</h2>
+                            <em>July 1st, 2017</em>
+                            <p>	
+                                Graduated in <span class="highlight">Information Technology</span> from <span class="highlight">Dr. A.P.J. Abdul Kalam Technical University</span> with Bachelor of Technology degree.
+                            </p>
+                        </li>
+
+            
+                    </ol>
+                </div> <!-- .events-content -->
+            </section>
+          
+            <div class="clear"></div>
+    
+            <div class="row mb-5 resume web-resume mx-auto">
+                <div class="col-10 col-sm-4 col-md-3 mx-auto my-5 wow bounceInLeft" data-wow-offset="100">
+                    <img src="img/web-dev-skills.png" alt="Web Developer Skills" class="img-fluid">
+                </div>
+                <div class="col-12 col-sm-6 col-md-7 mx-auto my-auto">
+                    <h4>Web Developer Skills</h4>
+                    <p>- HTML5 - CSS3 - Javascript - JavaEE - jQuery - Wordpress - NodeJS - Bootstrap - </p>
+                    <a href="./res/Mohd Nadeem Updated Resume.pdf" class="btn mt-4 resume-btn" download>Web Developer Resume</a>
+                </div>
+            </div>
+            <hr>
+            <div class="row py-2 resume app-resume mx-auto">
+                <div class="col-12 col-sm-6 col-md-6 mx-auto my-auto">
+                    <h4>App Developer Skills</h4>
+                    <p>- Java - Python - C++ - R - SQL - Jersey - Hibernate - Struts 2 - </p>
+                    <a href="./res/Mohd Nadeem Updated Resume.pdf" class="btn mt-4 resume-btn" download>App Developer Resume</a>
+                </div>
+                <div class="col-12 col-sm-4 col-md-4 mx-auto my-5 wow bounceInRight" data-wow-offset="100">
+                    <img src="img/app-dev-skills.png" alt="Web Developer Skills" class="img-fluid">
+                </div>
+            </div>
         </div>
-    </footer>
+        
+        <div id="work" class="py-4">
+            <h1 style="color:#EA0357;">work</h1>
+            <div class="work-list row text-center py-4">
+                <div class="buttonList mx-auto">
+                    <button class="btn selected" id="allButton">all</button>
+                    <button class="btn" id="webButton">web</button>
+                    <button class="btn" id="desktopButton">desktop</button>
+                    <button class="btn" id="apiButton">api</button>
+                </div>
+            </div>
+            <ul class="grid cs-style-3">
+                <li class="wow zoomIn all web"  data-wow-offset="100">
+                    <figure>
+                        <img class="img-fluid" src="img/work-test-engine.png" alt="Test Engine">
+                        <figcaption>
+                            <h5>Test Engine</h5>
+                            <a href="#work">Web</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="wow zoomIn all web" data-wow-offset="100">
+                    <figure>
+                        <img class="img-fluid" src="img/work-shoppersdealpoint-com.png" alt="ShoppersDealPoint">
+                        <figcaption>
+                            <h5>ShoppersDealPoint</h5>
+                            <a href="#work">Web</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="wow zoomIn all web desktop" data-wow-offset="100">
+                    <figure>
+                        <img class="img-fluid" src="img/work-code-player.png" alt="Code Player">
+                        <figcaption>
+                            <h5>Code Player</h5>
+                            <a href="#work">Web</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="wow zoomIn all desktop" data-wow-offset="100">
+                    <figure>
+                        <img class="img-fluid" src="img/work-hangman.PNG" alt="Hangman">
+                        <figcaption>
+                            <h5>Hangman</h5>
+                            <a href="#work">Python (PyQt)</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="wow zoomIn all desktop" data-wow-offset="100">
+                    <figure>
+                        <img class="img-fluid" src="img/work-loan-management-system.jpg" alt="Loan Management System">
+                        <figcaption>
+                            <h5>Loan Management System</h5>
+                            <a href="#work">Java (Swing)</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="wow zoomIn all api" data-wow-offset="100">
+                    <figure>
+                        <img class="img-fluid" src="img/work-rest-api.png" alt="Rest API">
+                        <figcaption>
+                            <h5>Android App Rest API</h5>
+                            <a href="#work">Java (Jersey)</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="wow zoomIn all api" data-wow-offset="100">
+                    <figure>
+                        <img class="img-fluid" src="img/work-todo.PNG" alt="Todo API">
+                        <figcaption>
+                            <h5>Todo Rest API (Node JS)</h5>
+                            <a href="#work">Node Js, MongoDB</a>
+                        </figcaption>
+                    </figure>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- Contact Form -->
+        <div id="contact" class="py-4">
+            <h1 style="color:#0AADDE;">connect</h1>
+            <p class="text-center">Want to start something together?</p>
+            <p class="text-center">E-mail me at <span class="highlight" style="color:#0AADDE;">mohd.nadeem3464@gmail.com</span></p>
+            <div class="row no-gutters">
+                <div class="col-md-6 p-3 mx-auto wow bounceInLeft">
+                    <form action="https://formspree.io/mohd.nadeem3464@gmail.com" method="POST">
+                        <div class="input-group cinput-wrapper my-3">
+                            <!-- <div class="input-group-addon"><span class="fa fa-user"></span></div> -->
+                            <input type="text" class="form-control form-control-lg" name="name" placeholder="&#61447;  Name">
+                        </div>
+                        <div class="input-group cinput-wrapper my-3">
+                            <!-- <div class="input-group-addon"><span class="fa fa-envelope"></span></div> -->
+                            <input type="email" class="form-control form-control-lg" name="email" placeholder="&#61664;  Email">
+                        </div>
+                        <div class="input-group cinput-wrapper my-3">
+                            <!-- <div class="input-group-addon"><span class="fa fa-pencil"></span></div> -->
+                            <textarea type="text" class="form-control form-control-lg" rows="4" name="message" placeholder="&#61504;  Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-lg mx-auto d-block my-5">Send <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+        <footer class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="social col-md-5 mr-auto wow tada">
+                        <a target="_blank" href="https://www.facebook.com/binovizer" class="i-wrap facebook-icon">
+                            <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a target="_blank" href="https://twitter.com/ascetic_me" class="i-wrap twitter-icon">
+                            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a target="_blank" href="https://plus.google.com/+MohdNadeem3464" class="i-wrap google-icon">
+                            <i class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/binovizer/" class="i-wrap linkedin-icon">
+                            <i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a target="_blank" href="https://github.com/Binovizer/" class="i-wrap github-icon">
+                            <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="copyright col-md-3 ml-auto pt-3">
+                        <span>&copy; 2017 </span><a href="#landing">Mohd Nadeem</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
