@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="./css/back-to-top.css">
     <link rel="stylesheet" href="./css/landing.css">
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/bruce.css">
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/work.css">
     <link rel="stylesheet" href="./css/contact.css">
@@ -96,7 +97,14 @@
             <!-- Image after turning light on -->
             <div id="back-to-work">
                 <div class="desk-image img-fluid"></div>
-    
+                <div class="hire-me">
+                    <a href="#contact">
+                        <img class="img-fluid" src="./img/hire_me.png">
+                    </a>
+                </div>
+                <div class="hire_me_btn_container hidden-sm-up">
+                    <a href="#contact" class="btn btn-primary hire_me_btn btn-lg mx-auto">Hire Me!</a>
+                </div>
             </div>
         </div>
         
@@ -105,6 +113,18 @@
             <div class="wow bounceInLeft logoContainer">
                 <img class="logo" src="img/logo.png">
             </div>
+            <div class="container text-center">
+                <div class="creativity-container wow bounceInDown">
+                    <img src="img/creativity.png" alt="Creativity Image" class="img-fluid">
+                </div>
+                <div class="guy-container">
+                    <img src="img/guy.png" alt="Guy Image" class="img-fluid">
+                </div>
+                <div class="bench-container wow zoomInDown">
+                    <img src="img/bench.png" alt="Bench Image" class="img-fluid">
+                </div>
+            </div>
+            
         </div>
     
         <!-- About Section -->
@@ -158,6 +178,7 @@
                                 <li><a href="#0" data-date="05/06/2012">5 Jun</a></li>
                                 <li><a href="#0" data-date="06/08/2013">6 Aug</a></li>
                                 <li><a href="#0" data-date="01/07/2017">1 Jul</a></li>
+                                <li><a href="#0" data-date="23/11/2017">23 Nov</a></li>
                             </ol>
                             <span class="filling-line" aria-hidden="true"></span>
                         </div> <!-- .events -->
@@ -199,6 +220,13 @@
                             <em>July 1st, 2017</em>
                             <p>	
                                 Graduated in <span class="highlight">Information Technology</span> from <span class="highlight">Dr. A.P.J. Abdul Kalam Technical University</span> with Bachelor of Technology degree.
+                            </p>
+                        </li>
+                        <li data-date="23/11/2017">
+                            <h2>Joined TCS</h2>
+                            <em>November 23rd, 2017</em>
+                            <p>	
+                                Started working in <span class="highlight">Tata Consultancy Services Ltd.</span> as <span class="highlight">Assistant Systems Enginner - Trainee</span>.
                             </p>
                         </li>
 
@@ -311,26 +339,28 @@
     
         <!-- Contact Form -->
         <div id="contact" class="py-4">
-            <h1 style="color:#0AADDE;">connect</h1>
-            <p class="text-center">Want to start something together?</p>
-            <p class="text-center">E-mail me at <span class="highlight" style="color:#0AADDE;">mohd.nadeem3464@gmail.com</span></p>
-            <div class="row no-gutters">
-                <div class="col-md-6 p-3 mx-auto wow bounceInLeft">
-                    <form action="https://formspree.io/mohd.nadeem3464@gmail.com" method="POST">
-                        <div class="input-group cinput-wrapper my-3">
-                            <!-- <div class="input-group-addon"><span class="fa fa-user"></span></div> -->
-                            <input type="text" class="form-control form-control-lg" name="name" placeholder="&#61447;  Name">
-                        </div>
-                        <div class="input-group cinput-wrapper my-3">
-                            <!-- <div class="input-group-addon"><span class="fa fa-envelope"></span></div> -->
-                            <input type="email" class="form-control form-control-lg" name="email" placeholder="&#61664;  Email">
-                        </div>
-                        <div class="input-group cinput-wrapper my-3">
-                            <!-- <div class="input-group-addon"><span class="fa fa-pencil"></span></div> -->
-                            <textarea type="text" class="form-control form-control-lg" rows="4" name="message" placeholder="&#61504;  Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-lg mx-auto d-block my-5">Send <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                    </form>
+            <div class="container">
+                <h1 style="color:#0AADDE;">connect</h1>
+                <p class="text-center">Want to start something together?</p>
+                <p class="text-center">E-mail me at <span class="highlight" style="color:#0AADDE;">mohd.nadeem3464@gmail.com</span></p>
+                <div class="row no-gutters">
+                    <div class="col-md-6 p-3 mx-auto wow bounceInLeft">
+                        <form action="https://formspree.io/mohd.nadeem3464@gmail.com" method="POST">
+                            <div class="input-group cinput-wrapper my-3">
+                                <!-- <div class="input-group-addon"><span class="fa fa-user"></span></div> -->
+                                <input type="text" class="form-control form-control-lg" name="name" placeholder="&#61447;  Name">
+                            </div>
+                            <div class="input-group cinput-wrapper my-3">
+                                <!-- <div class="input-group-addon"><span class="fa fa-envelope"></span></div> -->
+                                <input type="email" class="form-control form-control-lg" name="email" placeholder="&#61664;  Email">
+                            </div>
+                            <div class="input-group cinput-wrapper my-3">
+                                <!-- <div class="input-group-addon"><span class="fa fa-pencil"></span></div> -->
+                                <textarea type="text" class="form-control form-control-lg" rows="4" name="message" placeholder="&#61504;  Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-lg mx-auto d-block my-5">Send <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

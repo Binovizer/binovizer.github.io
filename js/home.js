@@ -11,7 +11,7 @@ $(document).ready(function(){
             });
         } else {
             $('#home .logoContainer').css({
-                position: 'relative'
+                position: 'absolute'
             });
         }
     });

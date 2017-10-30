@@ -9,7 +9,6 @@
     background: url("./../img/tumblr_static_bg3.png") repeat center center;
     background-size: contain;
     animation: animate-bg 10s linear 200ms infinite;
-    /* filter: opacity(0.6); */
 }
 
 @-webkit-keyframes animate-bg {
