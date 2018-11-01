@@ -13,7 +13,7 @@ $(document).ready(function(){
             $("#landing #character").css("opacity", "1");
             $("#landing #chatBox").css("opacity", "1");
             $("#landing #back-to-work").css({
-                "opacity": "1",
+                "opacity": "0",
                 "z-index": "-999999"
             });
         }
