@@ -55,6 +55,7 @@
 
 #landing #back-to-work{
     opacity: 0;
+    z-index: -999999;
     position: absolute;
     top: 0;
     left: 0;
