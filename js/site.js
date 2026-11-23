@@ -17,7 +17,7 @@
   $('year').textContent = new Date().getFullYear();
 
   /* ---- Analytics events (GoatCounter). A no-op until its script is on the page. ---- */
-  function track(name) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} }
+  function trackEvent(name) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} }
 
   /* ---- Shared effects: confetti and floating text (used page-wide) ---- */
   var COLORS = ['#4cc9f0', '#ffd166', '#ff5c8a', '#3ddc97', '#a78bfa'];
@@ -85,11 +85,11 @@
     renderAch();
     restartClass(trophy, 'bump', 400);
     toast(a[1] + ' Achievement unlocked: ' + a[2] + ' (' + got.length + '/' + ACH.length + ')');
-    track('achievement-' + id);
+    trackEvent('achievement-' + id);
     if (got.length === ACH.length) {
       setTimeout(function () {
         toast('🎉 All ' + ACH.length + ' unlocked. You have seen everything. Now say hi!');
-        track('achievement-all');
+        trackEvent('achievement-all');
         confetti($('celebrate'), 80);
       }, 900);
     }
@@ -156,7 +156,7 @@
     syncBulb();
     restartClass(bulb, 'swing', 900);
     unlock('bulb');
-    track('theme-' + root.dataset.theme);
+    trackEvent('theme-' + root.dataset.theme);
   });
 
   /* ---- Typewriter + talk to the character ---- */
@@ -219,7 +219,7 @@
       else say(ANSWERS[q][1], ANSWERS[q][0]);
       if (q === 'work') wave();
       unlock('chat');
-      track('chat-' + q);
+      trackEvent('chat-' + q);
     });
   });
 
@@ -316,7 +316,7 @@
         quizDone++;
         quizScore();
         ans.setAttribute('tabindex', '-1'); ans.focus({ preventScroll: true });
-        if (quizDone === quizTiles.length) { unlock('quiz'); track('quiz-done-' + quizRight + '-of-' + quizTiles.length); }
+        if (quizDone === quizTiles.length) { unlock('quiz'); trackEvent('quiz-done-' + quizRight + '-of-' + quizTiles.length); }
       });
     });
   });
@@ -596,7 +596,7 @@
       g.play.addEventListener('click', function () {
         g.halt(); g.setScore(0); g.running = true; g.play.disabled = true;
         root.classList.add('playing');
-        track('play-' + key);
+        trackEvent('play-' + key);
         if (g.act) g.act.disabled = false;
         g.msg.textContent = 'Go!';
         g.start();
@@ -910,7 +910,7 @@
     a.addEventListener('click', function (e) {
       unlock('mail');
       var picked = intentChips.filter(function (c) { return c.getAttribute('aria-checked') === 'true'; })[0];
-      track('email-' + (a === contactMail ? (picked ? picked.dataset.intent : 'contact') : 'hero'));
+      trackEvent('email-' + (a === contactMail ? (picked ? picked.dataset.intent : 'contact') : 'hero'));
       plane.style.color = a.dataset.plane || '';
       if (reduced || e.metaKey || e.ctrlKey || e.shiftKey || a._sent) return; // second click goes straight through
       e.preventDefault();
