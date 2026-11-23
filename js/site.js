@@ -90,16 +90,27 @@
     }
   }
   renderAch();
+  function closePanel(refocus) {
+    var hadFocus = achPanel.contains(document.activeElement);
+    achPanel.hidden = true;
+    trophy.setAttribute('aria-expanded', 'false');
+    if (refocus || hadFocus) trophy.focus();
+  }
   trophy.addEventListener('click', function () {
-    var open = achPanel.hidden;
-    achPanel.hidden = !open;
-    trophy.setAttribute('aria-expanded', String(open));
+    if (!achPanel.hidden) { closePanel(true); return; }
+    achPanel.hidden = false;
+    trophy.setAttribute('aria-expanded', 'true');
+    achPanel.focus();
   });
   document.addEventListener('click', function (e) {
-    if (!achPanel.hidden && !achPanel.contains(e.target) && !trophy.contains(e.target)) { achPanel.hidden = true; trophy.setAttribute('aria-expanded', 'false'); }
+    if (!achPanel.hidden && !achPanel.contains(e.target) && !trophy.contains(e.target)) closePanel(false);
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !achPanel.hidden) { achPanel.hidden = true; trophy.setAttribute('aria-expanded', 'false'); trophy.focus(); }
+    if (e.key === 'Escape' && !achPanel.hidden) closePanel(true);
+  });
+  // Tabbing out of the panel closes it, so it never hangs open behind the page.
+  achPanel.addEventListener('focusout', function (e) {
+    if (!achPanel.hidden && e.relatedTarget && !achPanel.contains(e.relatedTarget) && e.relatedTarget !== trophy) closePanel(false);
   });
 
   /* ---- Sky: stars and lit windows ---- */
@@ -126,8 +137,10 @@
 
   /* ---- Bulb = theme switch ---- */
   var bulb = $('bulb');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
   function syncBulb() {
     var day = root.dataset.theme === 'day';
+    if (themeMeta) themeMeta.content = day ? '#ffd3a1' : '#060a18';
     bulb.setAttribute('aria-pressed', String(day));
     bulb.setAttribute('aria-label', day ? 'Lights off (switch to night theme)' : 'Lights on (switch to day theme)');
   }
@@ -142,7 +155,9 @@
 
   /* ---- Typewriter + talk to the character ---- */
   var typed = $('typed'), scene = $('scene'), typeTimer, resumeTimer;
-  var phrases = ["Hi, I'm Nadeem 👋", 'I lead the billing team at Goldman Sachs.', 'Ask me something below 👇', 'Pull the bulb ☝ top right'];
+  var GREETING = 'Hi, I’m Nadeem 👋';
+  function calm() { return reduced || root.classList.contains('still'); }
+  var phrases = [GREETING, 'I lead the billing team at Goldman Sachs.', 'Ask me something below 👇', 'Pull the bulb ☝ top right'];
   // Array.from splits by code point, so the emoji are never cut in half.
   var chars = phrases.map(function (t) { return Array.from(t); });
   var p = 0, c = chars[0].length, deleting = true;
@@ -154,7 +169,7 @@
     else if (!deleting && c === chars[p].length) { deleting = true; delay = 2200; }
     typeTimer = setTimeout(tick, delay);
   }
-  if (reduced) typed.textContent = "Hi, I'm Nadeem 👋";
+  if (calm()) typed.textContent = GREETING;
   else typeTimer = setTimeout(tick, 2200); // first phrase is already in the HTML
 
   var FUN = [
@@ -175,7 +190,7 @@
     scene.classList.remove('mood-happy', 'mood-surprised', 'mood-wink');
     void scene.getBoundingClientRect();
     scene.classList.add('mood-' + mood);
-    if (reduced) { typed.textContent = text; }
+    if (calm()) { typed.textContent = text; }
     else {
       var letters = Array.from(text), k = 0;
       (function typeOut() {
@@ -186,7 +201,7 @@
     // Go back to the idle loop after a pause.
     resumeTimer = setTimeout(function () {
       scene.classList.remove('mood-happy', 'mood-surprised', 'mood-wink');
-      if (reduced) return;
+      if (calm()) { typed.textContent = GREETING; return; }
       c = 0; deleting = false; p = 0; typed.textContent = '';
       typeTimer = setTimeout(tick, 300);
     }, 9000);
@@ -199,6 +214,24 @@
       if (q === 'work') wave();
       unlock('chat');
     });
+  });
+
+  /* ---- Pause animations (WCAG 2.2.2): freezes ambient loops and the typewriter ---- */
+  var stillBtn = $('still-btn');
+  function syncStill() {
+    var on = root.classList.contains('still');
+    stillBtn.setAttribute('aria-pressed', String(on));
+    stillBtn.textContent = on ? '▶ Play animations' : '⏸ Pause animations';
+  }
+  syncStill();
+  stillBtn.addEventListener('click', function () {
+    var on = !root.classList.contains('still');
+    root.classList.toggle('still', on);
+    try { localStorage.setItem('still', on ? '1' : '0'); } catch (e) {}
+    syncStill();
+    clearTimeout(typeTimer); clearTimeout(resumeTimer);
+    if (calm()) typed.textContent = GREETING;
+    else { c = 0; deleting = false; p = 0; typed.textContent = ''; typeTimer = setTimeout(tick, 300); }
   });
 
   /* ---- Character: wave + eyes ---- */
@@ -286,21 +319,44 @@
   var track = $('track'), walker = $('walker'), railFill = $('rail-fill');
   var stations = Array.prototype.slice.call(track.querySelectorAll('.station'));
   var walkTimer, queued = false, journeyLive = false, walkerTag = $('walker-tag');
-  function updateJourney() {
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.site-header nav a'));
+  var navUl = document.querySelector('.site-header nav ul'), header = document.querySelector('.site-header');
+  var spied = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var activeLink = null, geo = null;
+  // Layout that only changes on resize/reflow: measured once, not on every scroll frame.
+  function measure() {
+    geo = {
+      trackH: track.offsetHeight,
+      stTops: stations.map(function (st) { return st.offsetTop; }),
+      headerH: header.offsetHeight,
+      navScrolls: navUl.scrollWidth > navUl.clientWidth,
+      linkLefts: navLinks.map(function (l) { return l.offsetLeft; })
+    };
+  }
+  function frame() {
     queued = false;
-    var rect = track.getBoundingClientRect(), travel = Math.max(1, rect.height - 60);
-    var prog = clamp((window.innerHeight * 0.45 - rect.top) / travel, 0, 1), y = prog * travel;
+    if (!geo) measure();
+    // 1. Reads only.
+    var vh = window.innerHeight, trackTop = track.getBoundingClientRect().top;
+    var secTops = spied.map(function (sec) { return sec ? sec.getBoundingClientRect().top : Infinity; });
+    var atBottom = vh + window.scrollY >= document.documentElement.scrollHeight - 2;
+    // 2. Writes only.
+    writeJourney(trackTop, vh);
+    writeNav(secTops, geo.headerH + vh * 0.3, atBottom);
+  }
+  function writeJourney(trackTop, vh) {
+    var travel = Math.max(1, geo.trackH - 60);
+    var prog = clamp((vh * 0.45 - trackTop) / travel, 0, 1), y = prog * travel, last = -1;
     walker.style.setProperty('--y', y.toFixed(1) + 'px');
     railFill.style.setProperty('--p', prog.toFixed(4));
-    var last = -1;
     stations.forEach(function (st, i) {
-      var r = y + 30 >= st.offsetTop + 22;
+      var r = y + 30 >= geo.stTops[i] + 22;
       st.classList.toggle('reached', r);
       if (r) last = i;
       // First time a station is reached by scrolling: celebrate it once.
       if (r && journeyLive && !st.classList.contains('unlocked')) {
         st.classList.add('unlocked');
-        var yPct = (st.offsetTop + 30) / track.offsetHeight * 100;
+        var yPct = (geo.stTops[i] + 30) / geo.trackH * 100;
         if (i === stations.length - 1) {
           pop(track, 'LEVEL UP: Vice President 🚀', 50, yPct, 'big');
           confetti(track, 40);
@@ -309,19 +365,12 @@
       }
     });
     walkerTag.textContent = stations[Math.max(0, last)].dataset.year;
-    updateNav();
   }
-
-  /* ---- Header scroll-spy: mark the section you're in ---- */
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.site-header nav a'));
-  var navUl = document.querySelector('.site-header nav ul'), header = document.querySelector('.site-header');
-  var spied = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-  var activeLink = null;
-  function updateNav() {
-    var line = header.offsetHeight + window.innerHeight * 0.3, idx = -1;
-    spied.forEach(function (sec, i) { if (sec && sec.getBoundingClientRect().top <= line) idx = i; });
+  function writeNav(secTops, line, atBottom) {
+    var idx = -1;
+    secTops.forEach(function (t, i) { if (t <= line) idx = i; });
     // The last section can be too short to reach the line, so the page bottom counts as inside it.
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) idx = spied.length - 1;
+    if (atBottom) idx = spied.length - 1;
     var next = navLinks[idx] || null;
     if (next === activeLink) return;
     if (activeLink) activeLink.removeAttribute('aria-current');
@@ -329,18 +378,22 @@
     if (!next) return;
     next.setAttribute('aria-current', 'location');
     // On phones the nav scrolls sideways: keep the active link visible without moving the page.
-    if (navUl.scrollWidth > navUl.clientWidth) navUl.scrollTo({ left: next.offsetLeft - 16, behavior: reduced ? 'auto' : 'smooth' });
+    if (geo.navScrolls) navUl.scrollTo({ left: geo.linkLefts[idx] - 16, behavior: reduced ? 'auto' : 'smooth' });
   }
+  function schedule() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
   window.addEventListener('scroll', function () {
     if (!reduced) {
       walker.classList.add('walking');
       clearTimeout(walkTimer);
       walkTimer = setTimeout(function () { walker.classList.remove('walking'); }, 180);
     }
-    if (!queued) { queued = true; requestAnimationFrame(updateJourney); }
+    schedule();
   }, { passive: true });
-  window.addEventListener('resize', updateJourney);
-  updateJourney();
+  function remeasure() { geo = null; schedule(); }
+  window.addEventListener('resize', remeasure);
+  window.addEventListener('load', remeasure); // fonts and images can shift layout after first paint
+  if ('ResizeObserver' in window) new ResizeObserver(remeasure).observe(track);
+  frame();
   // Stations already passed on load count as unlocked silently.
   stations.forEach(function (st) { if (st.classList.contains('reached')) st.classList.add('unlocked'); });
   journeyLive = true;
@@ -389,12 +442,18 @@
     svg.appendChild(g);
     gEls.push(g);
 
+    var btn = li.querySelector('.group-btn'), pinned = false;
     function on() { li.classList.add('lit'); g.classList.add('lit'); unlock('stars'); }
-    function off() { li.classList.remove('lit'); g.classList.remove('lit'); }
+    function off() { if (pinned) return; li.classList.remove('lit'); g.classList.remove('lit'); }
     li.addEventListener('mouseenter', on); li.addEventListener('mouseleave', off);
-    li.addEventListener('focus', on); li.addEventListener('blur', off);
+    btn.addEventListener('focus', on); btn.addEventListener('blur', off);
     g.addEventListener('mouseenter', on); g.addEventListener('mouseleave', off);
-    li.addEventListener('click', function () { li.classList.contains('lit') ? off() : on(); });
+    // Click/tap pins the constellation on (or releases it), so a tap never lights and unlights at once.
+    btn.addEventListener('click', function () {
+      pinned = !pinned;
+      btn.setAttribute('aria-pressed', String(pinned));
+      if (pinned) on(); else off();
+    });
   });
   // Intro: light each constellation once when the section first appears
   if (!reduced && 'IntersectionObserver' in window) {
@@ -408,6 +467,11 @@
     }, { threshold: .4 });
     cio.observe(svg);
   }
+
+  /* ---- Award flip cards: tap or Enter flips them ---- */
+  document.querySelectorAll('.award .flip').forEach(function (b) {
+    b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+  });
 
   /* ---- Project card tilt (desktop only) ---- */
   if (finePointer && !reduced) {
@@ -495,6 +559,7 @@
         cancelAnimationFrame(g.raf); clearTimeout(g.t); clearTimeout(g.t2); clearInterval(g.iv);
         if (g.act) g.act.disabled = true;
         if (g.reset) g.reset();
+        root.classList.remove('playing');
       };
       g.finish = function (label) {
         g.halt();
@@ -510,6 +575,7 @@
       };
       g.play.addEventListener('click', function () {
         g.halt(); g.setScore(0); g.running = true; g.play.disabled = true;
+        root.classList.add('playing');
         if (g.act) g.act.disabled = false;
         g.msg.textContent = 'Go!';
         g.start();
@@ -790,6 +856,7 @@
 
   /* ---- Email: intent chips pre-fill the mail, paper plane, then open the mail app ---- */
   var plane = $('plane'), contactMail = $('contact-mail');
+  var intentChips = Array.prototype.slice.call(document.querySelectorAll('#intents .chip'));
   var INTENTS = {
     chat: ['Quick chat', 'Hi Nadeem,\n\nWould love a quick chat about ', '#4cc9f0'],
     biz: ['Business idea', 'Hi Nadeem,\n\nI have an idea I would like to run by you: ', '#ffd166'],
@@ -800,9 +867,22 @@
     var it = INTENTS[key];
     contactMail.href = 'mailto:mohd.nadeem3464@gmail.com?subject=' + encodeURIComponent(it[0]) + '&body=' + encodeURIComponent(it[1]);
     contactMail.dataset.plane = it[2];
-    document.querySelectorAll('#intents .chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.intent === key)); });
+    intentChips.forEach(function (c) {
+      var on = c.dataset.intent === key;
+      c.setAttribute('aria-checked', String(on));
+      c.tabIndex = on ? 0 : -1;
+    });
   }
-  document.querySelectorAll('#intents .chip').forEach(function (c) { c.addEventListener('click', function () { setIntent(c.dataset.intent); }); });
+  intentChips.forEach(function (c, i) {
+    c.addEventListener('click', function () { setIntent(c.dataset.intent); });
+    c.addEventListener('keydown', function (e) {
+      var d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      var n = intentChips[(i + d + intentChips.length) % intentChips.length];
+      setIntent(n.dataset.intent); n.focus();
+    });
+  });
   setIntent('chat');
   document.querySelectorAll('.mail-link').forEach(function (a) {
     a.addEventListener('click', function (e) {

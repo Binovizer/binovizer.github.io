@@ -28,7 +28,10 @@ Conventions that span files:
 - **Progressive enhancement:** an inline `<head>` script adds `.js` to `<html>` and applies the saved theme before first paint. Without JS, all content is visible: `.reveal` only hides when `.js` is set, and counters keep their final values in the HTML.
 - **Motion budget:** each section gets at most one ambient animation and one interaction. Animate only `transform` and `opacity`. `prefers-reduced-motion` must yield a calm, complete page; `site.css` ends with that block, and `site.js` checks `reduced`.
 - **Name clash:** CSS custom properties share one namespace. `--r` is the border-radius token, which is why the knight uses `--kc` and `--kr`.
-- The theme choice is stored in `localStorage` under the key `theme`.
+- The theme choice is stored in `localStorage` under the key `theme`. `<meta name="theme-color">` and `color-scheme` follow it, updated in the head script and `syncBulb()`.
+- **Pause animations** (footer, WCAG 2.2.2) toggles the `.still` class on `<html>`, saved as `still` in `localStorage`. It freezes ambient loops only; games keep working. JS uses `calm()` (reduced motion OR still) for the typewriter.
+- **Scroll handler:** `frame()` reads layout first, then writes. Static geometry (station tops, track height, nav offsets) is cached by `measure()` and refreshed on resize, load and track `ResizeObserver`. Don't add layout reads inside the write functions.
+- Copy uses curly quotes and apostrophes (’ “ ”). Toggles use `aria-pressed`; the contact intents are a `radiogroup` with a roving tabindex.
 
 ## Content and assets
 
