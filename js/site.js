@@ -871,10 +871,11 @@
   var plane = $('plane'), contactMail = $('contact-mail');
   var intentChips = Array.prototype.slice.call(document.querySelectorAll('#intents .chip'));
   var INTENTS = {
-    chat: ['Quick chat', 'Hi Nadeem,\n\nWould love a quick chat about ', '#4cc9f0'],
-    biz: ['Business idea', 'Hi Nadeem,\n\nI have an idea I would like to run by you: ', '#ffd166'],
-    hire: ['Opportunity', 'Hi Nadeem,\n\nI am reaching out about a role: ', '#3ddc97'],
-    hi: ['Just saying hi', 'Hi Nadeem,\n\nFound your portfolio and wanted to say hi! ', '#ff7ac6']
+    // Subjects: short enough for an inbox preview, playful, and still clear about the ask.
+    chat: ['15 minutes, your calendar, my coffee ☕', 'Hi Nadeem,\n\nCould we grab 15 minutes? I’d love to talk about: \n\nTimes that work for me: ', '#4cc9f0'],
+    biz: ['Got an idea. Needs a payments brain 💡', 'Hi Nadeem,\n\nThe idea in one line: \n\nWhy I thought of you: \n\nWhere it is today: ', '#ffd166'],
+    hire: ['Your next LEVEL UP 🚀 (no LeetCode, promise)', 'Hi Nadeem,\n\nThe role: \nThe team: \nWhy I think it fits you: ', '#3ddc97'],
+    hi: ['Just a ping, no ticket attached 👋', 'Hi Nadeem,\n\nStumbled onto your portfolio and wanted to say hi.\n\nMy best arcade score: ', '#ff7ac6']
   };
   function setIntent(key) {
     var it = INTENTS[key];
