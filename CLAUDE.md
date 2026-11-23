@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Mohd Nadeem's personal portfolio: a static, single-page, interactive site with no build step, no `package.json`, no tests and no linter. The repo is `Binovizer/binovizer.github.io`, a GitHub Pages user site. GitHub serves `master` directly at `https://binovizer.github.io`, so **pushing to `master` is the deploy** and there is no staging. Do the work on a branch and merge only when the owner asks. The 2018 version is kept at tag `v2018-final`, which is the rollback target.
+Nadeem's personal portfolio (he goes by "Nadeem" on the site, not "Mohd Nadeem"): a static, single-page, interactive site with no build step, no `package.json`, no tests and no linter. The repo is `Binovizer/binovizer.github.io`, a GitHub Pages user site. GitHub serves `master` directly at `https://binovizer.github.io`, so **pushing to `master` is the deploy** and there is no staging. Do the work on a branch and merge only when the owner asks. The 2018 version is kept at tag `v2018-final`, which is the rollback target.
 
 ## Commands
 
@@ -38,5 +38,6 @@ Conventions that span files:
 - Career facts come from the owner's resume and their direct answers. Don't invent or embellish them. Keep Goldman Sachs details to what is already on the page, and never add internal or client specifics.
 - The Resume button is intentionally absent until an updated PDF exists. `res/Mohd Nadeem Resume.pdf` is the 2018 one and is not linked.
 - `img/project-*.jpg` are screenshots taken with headless Chrome. Hotel Manager screenshots must come from demo seed data (`@test.com` and `@hotel.com` guests), never from pilot or real data.
+- **Logo:** an N whose diagonal is a glowing bulb filament. It is inline SVG in `.brand` and themed by CSS (`.logo-*`). `img/logo.svg` is the standalone favicon; `favicon.ico` (32 px) and `img/apple-touch-icon.png` (180 px) are rendered from it with headless Chrome and `sips`. Change all of them together.
 - `img/og.png` (1200×630) is the social preview: a capture of the hero with reduced motion forced. Regenerate it if the hero changes.
 - `img/2-emotion-2.png` is the only 2017 asset left; it's the footer easter egg.
