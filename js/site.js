@@ -246,26 +246,40 @@
     var arcade = $('arcade');
     if (!arcade) return;
 
-    // Figures share one 60x110 rig; each game adds props.
-    var F = {
-      head: '<circle class="skin" cx="30" cy="16" r="11"/><path class="hair" d="M19 15c0-9 6-13 11-13s12 4 11 13c-3-5-7-7-11-7s-8 2-11 7z"/><path class="beard" d="M21 19c2 7 5 9 9 9s7-2 9-9c-3 3-5 4-9 4s-6-1-9-4z"/><circle cx="26" cy="15" r="1.7" fill="#1f1b26"/><circle cx="34" cy="15" r="1.7" fill="#1f1b26"/>',
-      back: '<circle class="skin" cx="30" cy="16" r="11"/><path class="hair" d="M19 16c0-10 6-14 11-14s11 4 11 14c0 4-2 7-4 8H23c-2-1-4-4-4-8z"/>',
-      legs: '<rect class="legs" x="19" y="66" width="9" height="40" rx="4"/><rect class="legs" x="32" y="66" width="9" height="40" rx="4"/>',
-      body: '<rect class="kit" x="15" y="28" width="30" height="42" rx="10"/>',
-      armL: '<rect class="kit" x="7" y="31" width="9" height="30" rx="4.5"/>',
-      armR: '<rect class="kit" x="44" y="31" width="9" height="30" rx="4.5"/>',
-      armUp: '<rect class="kit" x="42" y="2" width="9" height="32" rx="4.5"/>',
-      racket: '<line x1="46.5" y1="4" x2="46.5" y2="-8" stroke="#333" stroke-width="3" stroke-linecap="round"/><ellipse cx="46.5" cy="-19" rx="8" ry="10" fill="none" stroke="#eee" stroke-width="2.5"/>'
-    };
+    // Figures share one 60x110 cartoon rig (big head like the hero character, tapered torso,
+    // rounded limbs drawn as strokes). Shoulders sit at (21,42) and (39,42), hips at (26,66) and (34,66).
+    function arm(sx, sy, cx, cy, hx, hy) { // shoulder, elbow control point, hand
+      return '<path class="limb-k" d="M' + sx + ' ' + sy + 'Q' + cx + ' ' + cy + ' ' + hx + ' ' + hy + '"/><circle class="skin" cx="' + hx + '" cy="' + hy + '" r="3.6"/>';
+    }
+    function legs(lx, rx) { // foot x positions; feet at y=98
+      return '<path class="limb-l" d="M26 66L' + lx + ' 97"/><path class="limb-l" d="M34 66L' + rx + ' 97"/>' +
+        '<ellipse class="shoe" cx="' + (lx - 1) + '" cy="100" rx="5.5" ry="3.2"/><ellipse class="shoe" cx="' + (rx + 1) + '" cy="100" rx="5.5" ry="3.2"/>';
+    }
+    var TORSO = '<path class="kit" d="M19 41q11-7 22 0l2 25q-13 5-26 0z"/>';
+    var FACE = '<circle class="skin" cx="15.5" cy="21" r="3.2"/><circle class="skin" cx="44.5" cy="21" r="3.2"/><circle class="skin" cx="30" cy="20" r="14.5"/>' +
+      '<path class="beard" d="M17.5 23c1 9 6 13 12.5 13s11.5-4 12.5-13c-3 4-7 6-12.5 6s-9.5-2-12.5-6z"/>' +
+      '<path class="hair" d="M15.5 19c-1-11 6-16 14.5-16s16 5 14.5 16c-2-5-6-8-11-9-6 3-12 4-18 9z"/>' +
+      '<circle cx="24.5" cy="20.5" r="1.9" fill="#1f1b26"/><circle cx="35.5" cy="20.5" r="1.9" fill="#1f1b26"/>' +
+      '<path d="M26 28q4 3 8 0" fill="none" stroke="#4a2c22" stroke-width="1.6" stroke-linecap="round"/>';
+    var BACK = '<circle class="skin" cx="15.5" cy="21" r="3.2"/><circle class="skin" cx="44.5" cy="21" r="3.2"/><circle class="skin" cx="30" cy="20" r="14.5"/>' +
+      '<path class="hair" d="M15.5 21c-1-12 6-18 14.5-18s15.5 6 14.5 18c-1 6-4 10-7 12H22.5c-3-2-6-6-7-12z"/>';
+    var RACKET = '<path d="M46 23L49 9" stroke="#2b2b33" stroke-width="2.6" stroke-linecap="round"/>' +
+      '<ellipse cx="50.5" cy="0" rx="6.5" ry="8.5" transform="rotate(10 50.5 0)" fill="rgba(255,255,255,.12)" stroke="#f2f2f2" stroke-width="2.2"/>';
     var FIGS = {
-      'me-racket': F.legs + F.body + F.armL + '<g class="swing-arm">' + F.armUp + F.racket + '</g>' + F.head,
-      'opp': F.legs + F.body + F.armL + F.armUp + F.racket + F.head,
-      'me-bat': F.legs + F.body + F.armL + F.armR + F.head + '<g class="bat"><rect x="43" y="34" width="7" height="48" rx="2" fill="#c8955a"/><rect x="44" y="27" width="5" height="9" fill="#333"/></g>',
-      'bowler': F.legs + F.body + F.armL + F.armUp + F.head,
-      'keeper': F.legs + F.body + '<rect class="kit" x="-8" y="30" width="24" height="9" rx="4.5"/><rect class="kit" x="44" y="30" width="24" height="9" rx="4.5"/><circle cx="-8" cy="34.5" r="5" fill="#fff"/><circle cx="68" cy="34.5" r="5" fill="#fff"/>' + F.head,
-      'me-kit': F.legs + '<rect x="19" y="94" width="9" height="12" rx="3" fill="#fff"/><rect x="32" y="94" width="9" height="12" rx="3" fill="#fff"/>' + F.body +
-        '<rect class="kit" x="16" y="62" width="28" height="14" rx="4"/>' + F.armL + F.armR + '<text class="num" x="30" y="56" text-anchor="middle">7</text>' + F.back,
-      'me-couch': F.body + F.armL + F.armR + F.back
+      'me-racket': legs(20, 40) + TORSO + arm(21, 42, 15, 52, 15, 62) +
+        '<g class="swing-arm">' + arm(39, 42, 47, 36, 46, 23) + RACKET + '</g>' + FACE,
+      'opp': legs(20, 40) + TORSO + arm(21, 42, 15, 52, 15, 62) + arm(39, 42, 47, 36, 46, 23) + RACKET + FACE,
+      'me-bat': legs(22, 38) + TORSO +
+        '<g class="bat"><rect x="32.5" y="52" width="3.4" height="9" rx="1.2" fill="#2b2b33"/><rect x="31" y="60" width="6.4" height="30" rx="2.4" fill="#d9a45f"/></g>' +
+        arm(21, 42, 25, 55, 33, 53) + arm(39, 42, 42, 50, 35.5, 54) +
+        FACE + '<path d="M15 18c0-11 7-16 15-16s15 5 15 16z" fill="#1d3f8f"/><path d="M15 18h31" stroke="#1d3f8f" stroke-width="3" stroke-linecap="round"/>',
+      'bowler': legs(18, 42) + TORSO + arm(21, 42, 13, 46, 9, 52) + arm(39, 42, 44, 30, 43, 14) + FACE,
+      'keeper': legs(17, 43) + TORSO + arm(21, 42, 10, 40, 5, 29) + arm(39, 42, 50, 40, 55, 29) +
+        '<circle cx="5" cy="29" r="4.8" fill="#fff"/><circle cx="55" cy="29" r="4.8" fill="#fff"/>' + FACE,
+      'me-kit': legs(22, 38) + '<path d="M23 86L22.5 95M37 86L37.5 95" stroke="#fff" stroke-width="7.4" stroke-linecap="round"/>' +
+        TORSO + '<path class="kit" d="M18 62h24l1 12h-10l-3-4-3 4H17z"/>' + arm(21, 42, 15, 53, 14, 63) + arm(39, 42, 45, 53, 46, 63) +
+        '<text class="num" x="30" y="61" text-anchor="middle">7</text>' + BACK,
+      'me-couch': TORSO + arm(21, 42, 20, 54, 26, 60) + arm(39, 42, 40, 54, 34, 60) + BACK
     };
     arcade.querySelectorAll('[data-fig]').forEach(function (el) {
       el.innerHTML = '<svg viewBox="0 0 60 110">' + FIGS[el.dataset.fig] + '</svg>';
@@ -350,17 +364,17 @@
       var g = Game('badminton'), sh = g.stage.querySelector('.shuttlecock');
       var dir, t0, T, p = 0;
       g.stage.dataset.tap = '';
-      g.reset = function () { place(g.stage, sh, 82, 42); };
+      g.reset = function () { place(g.stage, sh, 77, 34); };
       g.start = function () {
         T = 1500; dir = 'in'; t0 = performance.now();
         g.loop(function (now) {
           var dur = dir === 'in' ? T : 450;
           p = (now - t0) / dur;
           if (dir === 'in') {
-            place(g.stage, sh, 82 - 64 * p, 42 - 30 * Math.sin(Math.PI * Math.min(p, 1)) + Math.max(0, p - 1) * 160);
+            place(g.stage, sh, 77 - 55 * p, 34 - 24 * Math.sin(Math.PI * Math.min(p, 1)) + Math.max(0, p - 1) * 170);
             if (p > 1.15) { pop(g.stage, 'Missed!', 20, 60, 'bad'); g.finish('Rally'); }
           } else {
-            place(g.stage, sh, 18 + 64 * p, 42 - 34 * Math.sin(Math.PI * Math.min(p, 1)));
+            place(g.stage, sh, 22 + 55 * p, 30 - 26 * Math.sin(Math.PI * Math.min(p, 1)) + 4 * p);
             if (p >= 1) { dir = 'in'; t0 = now; T = Math.max(560, T * 0.92); }
           }
         });

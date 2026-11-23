@@ -19,7 +19,7 @@ There are exactly three source files and no third-party JS or CSS. The only exte
 - `css/site.css` holds the colour tokens: night is the default `:root`, and day is `[data-theme="day"]` on `<html>`. Every colour must come from a token so both themes work. The fixed `.sky` layer sits behind the whole page and swaps night for day by opacity.
 - `js/site.js` is one IIFE. It runs one rAF-throttled scroll handler (the journey walker and rail) and a pointer handler (eye tracking and card tilt), and uses IntersectionObservers for reveal-on-scroll, count-up, the constellation intro and pausing the hero animations when they're off screen. The constellation SVG is **built from the `#groups` list**, so edit the skills there, not in JS.
 
-- **Off-shift arcade** (`#arcade`): five mini-games in WAI-ARIA tabs. Each is a `Game(key)` in `site.js`, a shared shell with score, best (`localStorage` key `arcade-<key>`), timers, `halt()` and `finish()`, plus `start`, `action` and `reset` per game. Figures are built from the `FIGS` map (one 60×110 rig plus props) into `[data-fig]` slots. Only the selected tab's game runs, and switching tabs halts it.
+- **Off-shift arcade** (`#arcade`): five mini-games in WAI-ARIA tabs. Each is a `Game(key)` in `site.js`, a shared shell with score, best (`localStorage` key `arcade-<key>`), timers, `halt()` and `finish()`, plus `start`, `action` and `reset` per game. Figures are built from the `FIGS` map into `[data-fig]` slots. It is one 60×110 cartoon rig: shoulders at (21,42), hips at (26,66), feet at y≈100, with limbs drawn as round-capped strokes by `arm()` and `legs()`. Add `.mirror` to face a figure left. Only the selected tab's game runs, and switching tabs halts it.
 
 Conventions that span files:
 
