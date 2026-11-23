@@ -62,8 +62,11 @@
       <span class="cord"></span>
       <svg class="bulb-svg" viewBox="0 0 40 56" aria-hidden="true">
         <rect x="13" y="0" width="14" height="10" rx="2" class="bulb-cap"/>
-        <path class="bulb-glass" d="M20 10c-10 0-17 7-17 16 0 6 3 10 7 13 2 2 3 4 3 7h14c0-3 1-5 3-7 4-3 7-7 7-13 0-9-7-16-17-16z"/>
-        <path class="bulb-fil" d="M15 30q2.5-5 5 0t5 0"/>
+        <!-- flipped so the neck meets the cap and the round glass hangs below -->
+        <g transform="matrix(1 0 0 -1 0 56)">
+          <path class="bulb-glass" d="M20 10c-10 0-17 7-17 16 0 6 3 10 7 13 2 2 3 4 3 7h14c0-3 1-5 3-7 4-3 7-7 7-13 0-9-7-16-17-16z"/>
+          <path class="bulb-fil" d="M15 30q2.5-5 5 0t5 0"/>
+        </g>
       </svg>
     </button>
   </header>
