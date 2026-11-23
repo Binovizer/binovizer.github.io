@@ -356,15 +356,16 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 .boundary { position: absolute; z-index: -1; left: -20%; right: -20%; top: 20%; height: 160%; background: #3a9b62;
   border-top: 3px solid rgba(255, 255, 255, .9); border-radius: 50% 50% 0 0 / 22% 22% 0 0; }
 .stage-pitch::before { content: ""; position: absolute; left: 4%; right: 4%; bottom: 4%; height: 36%; background: #d8b878; border-radius: 6px; }
-.crease { position: absolute; left: 17%; bottom: 4%; width: 3px; height: 36%; background: #fff; }
-.crease.far { left: auto; right: 31%; }
-.stumps { position: absolute; left: 6%; bottom: 6%; height: 19%; display: flex; gap: 4px; }
-.stumps.far { left: auto; right: 20%; }
+/* Laws: popping crease is 1.22 m in front of the stumps (≈4.6% of the 20.12 m pitch drawn here) */
+.crease { position: absolute; left: 11%; bottom: 4%; width: 3px; height: 36%; background: #fff; }
+.crease.far { left: auto; right: 24%; }
+.stumps { position: absolute; left: 5%; bottom: 6%; height: 19%; display: flex; gap: 4px; }
+.stumps.far { left: auto; right: 18%; }
 .stumps i { width: 5px; height: 100%; background: #f4e3c1; border-radius: 2px; transition: transform .3s; transform-origin: bottom; }
 .stumps.out i:nth-child(1) { transform: rotate(-35deg); }
 .stumps.out i:nth-child(3) { transform: rotate(30deg); }
-.stage-pitch .fig-me { left: 9%; height: 48%; }
-.stage-pitch .fig-opp { right: 3%; height: 47%; --line: #ffe08a; }
+.stage-pitch .fig-me { left: 3.6%; height: 48%; }
+.stage-pitch .fig-opp { right: 15.6%; height: 47%; --line: #ffe08a; } /* front foot lands on the popping crease */
 .stage-pitch .fig-opp.runup { animation: runup .6s ease-in; }
 @keyframes runup { from { transform: translateX(30%); } }
 .bat { transform-origin: 38px 48px; transform: rotate(140deg); }
