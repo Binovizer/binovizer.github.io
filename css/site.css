@@ -310,13 +310,20 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 /* shared figures and objects */
 .fig { position: absolute; bottom: 6%; height: 62%; aspect-ratio: 60 / 110; }
 .fig svg { width: 100%; height: 100%; overflow: visible; display: block; }
-.fig .kit { fill: var(--kit, #2f6fde); }
-.fig .legs { fill: var(--legs, #1d2440); }
-.fig .limb-k { fill: none; stroke: var(--kit, #2f6fde); stroke-width: 6.5; stroke-linecap: round; }
-.fig .limb-l { fill: none; stroke: var(--legs, #1d2440); stroke-width: 7.4; stroke-linecap: round; }
-.fig .shoe { fill: var(--shoe, #23232b); }
+.fig { --line: #f7f7f2; }
+.fig .st { fill: none; stroke: var(--line); stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+.fig .hd { fill: rgba(0, 0, 0, .12); stroke: var(--line); stroke-width: 4.5; }
+.fig .eye-d { fill: var(--line); }
+.fig .mouth { fill: none; stroke: var(--line); stroke-width: 1.6; stroke-linecap: round; }
+.fig .racket { fill: rgba(255, 255, 255, .12); stroke: var(--line); stroke-width: 2.2; }
+.fig .helmet { fill: #2f6fde; }
+.fig .visor { stroke: #2f6fde; stroke-width: 3; }
+.fig .blade { fill: #e0b072; }
+.fig .grip { stroke: #2b2b33; }
+.fig .glove { fill: #fff; stroke: var(--line); stroke-width: 2; }
+.fig .ball-in-hand { fill: #d6303d; }
 .fig.mirror svg { transform: scaleX(-1); }
-.fig .num { fill: var(--num, #fff); font: 700 14px var(--font-display); }
+.fig .num { fill: #ffd166; font: 700 15px var(--font-display); }
 .obj { position: absolute; left: 0; top: 0; will-change: transform; }
 .pop { position: absolute; z-index: 5; transform: translate(-50%, -50%); font: 700 1.2rem var(--font-display); color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, .6);
   pointer-events: none; white-space: nowrap; animation: rise .9s var(--ease) forwards; }
@@ -333,9 +340,9 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
   border-left: 3px solid #fff; border-right: 3px solid #fff; border-top: 4px solid #fff;
   background: repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 1px, transparent 1px 5px), repeating-linear-gradient(0deg, rgba(255,255,255,.35) 0 1px, transparent 1px 5px); }
 .stage-court .fig-me { left: 12%; }
-.stage-court .fig-opp { right: 12%; height: 55%; opacity: .85; --kit: #e0663e; }
+.stage-court .fig-opp { right: 12%; height: 55%; --line: #ffb38a; }
 .shuttlecock { width: 34px; height: 24px; }
-.swing-arm { transform-origin: 39px 42px; transform: rotate(-12deg); }
+.swing-arm { transform-origin: 30px 32px; transform: rotate(-10deg); }
 .swinging .swing-arm { animation: racket .3s var(--ease); }
 @keyframes racket { 45% { transform: rotate(75deg); } }
 
@@ -347,11 +354,11 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 .stumps i { width: 5px; height: 100%; background: #f4e3c1; border-radius: 2px; transition: transform .3s; transform-origin: bottom; }
 .stumps.out i:nth-child(1) { transform: rotate(-35deg); }
 .stumps.out i:nth-child(3) { transform: rotate(30deg); }
-.stage-pitch .fig-me { left: 9%; --legs: #f4f4f4; }
-.stage-pitch .fig-opp { right: 8%; height: 58%; --kit: #f4f4f4; --legs: #f4f4f4; }
+.stage-pitch .fig-me { left: 9%; }
+.stage-pitch .fig-opp { right: 8%; height: 58%; --line: #ffe08a; }
 .stage-pitch .fig-opp.runup { animation: runup .6s ease-in; }
 @keyframes runup { from { transform: translateX(30%); } }
-.bat { transform-origin: 34px 54px; transform: rotate(140deg); }
+.bat { transform-origin: 38px 48px; transform: rotate(140deg); }
 .swinging .bat { animation: bat .35s var(--ease); }
 @keyframes bat { 45% { transform: rotate(-65deg); } }
 .cricket-ball { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff6b6b, #b3121f); opacity: 0; }
@@ -366,12 +373,12 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
   background: repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 10px), repeating-linear-gradient(-45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 10px); }
 .goal.ripple { animation: ripple .5s; }
 @keyframes ripple { 30% { background-position: 0 6px; } }
-.keeper { left: 50%; bottom: 0; height: 88%; transform: translateX(-50%); transition: transform .35s var(--ease); --kit: #a3e635; --legs: #1d2440; }
+.keeper { left: 50%; bottom: 0; height: 88%; transform: translateX(-50%); transition: transform .35s var(--ease); --line: #c6f36b; }
 .keeper.dive-0 { transform: translateX(-160%) translateY(10%) rotate(-65deg); }
 .keeper.dive-1 { transform: translateX(-50%) translateY(-14%); }
 .keeper.dive-2 { transform: translateX(60%) translateY(10%) rotate(65deg); }
 .spot { position: absolute; left: 50%; top: 84%; width: 10px; height: 6px; border-radius: 50%; background: #fff; transform: translate(-50%, -50%); }
-.stage-field .fig-me { left: 37%; bottom: 3%; height: 40%; --kit: #f4f4f4; --legs: #c98d63; --num: #c9a227; }
+.stage-field .fig-me { left: 37%; bottom: 3%; height: 40%; }
 .stage-field .fig-me.jump { animation: siujump .9s var(--ease); }
 @keyframes siujump { 35% { transform: translateY(-28%) rotate(-6deg); } 60% { transform: translateY(0) scale(1.05, .95); } }
 .football { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 50% 50%, #222 0 22%, #fff 24%); box-shadow: 0 2px 4px rgba(0,0,0,.4);

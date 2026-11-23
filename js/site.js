@@ -490,40 +490,36 @@
     var arcade = $('arcade');
     if (!arcade) return;
 
-    // Figures share one 60x110 cartoon rig (big head like the hero character, tapered torso,
-    // rounded limbs drawn as strokes). Shoulders sit at (21,42) and (39,42), hips at (26,66) and (34,66).
-    function arm(sx, sy, cx, cy, hx, hy) { // shoulder, elbow control point, hand
-      return '<path class="limb-k" d="M' + sx + ' ' + sy + 'Q' + cx + ' ' + cy + ' ' + hx + ' ' + hy + '"/><circle class="skin" cx="' + hx + '" cy="' + hy + '" r="3.6"/>';
+    // Stick figures on one 60x110 rig: head centre (30,14), shoulders (30,32), hips (30,62), feet y≈104.
+    // Lines use --line (set per figure in CSS), so the same rig serves every player.
+    function seg() { // polyline through points: seg(x1,y1, x2,y2, ...)
+      var a = arguments, d = 'M' + a[0] + ' ' + a[1];
+      for (var i = 2; i < a.length; i += 2) d += 'L' + a[i] + ' ' + a[i + 1];
+      return '<path class="st" d="' + d + '"/>';
     }
-    function legs(lx, rx) { // foot x positions; feet at y=98
-      return '<path class="limb-l" d="M26 66L' + lx + ' 97"/><path class="limb-l" d="M34 66L' + rx + ' 97"/>' +
-        '<ellipse class="shoe" cx="' + (lx - 1) + '" cy="100" rx="5.5" ry="3.2"/><ellipse class="shoe" cx="' + (rx + 1) + '" cy="100" rx="5.5" ry="3.2"/>';
+    function head(look) { // look: 'r' right, 'f' front, 'b' back (no face)
+      var h = '<circle class="hd" cx="30" cy="14" r="9"/>';
+      if (look === 'r') h += '<circle class="eye-d" cx="33" cy="13" r="1.4"/><circle class="eye-d" cx="37" cy="13" r="1.4"/><path class="mouth" d="M32 18q3 2 6 0"/>';
+      if (look === 'f') h += '<circle class="eye-d" cx="27" cy="13" r="1.4"/><circle class="eye-d" cx="33" cy="13" r="1.4"/><path class="mouth" d="M27 18q3 2.5 6 0"/>';
+      return h;
     }
-    var TORSO = '<path class="kit" d="M19 41q11-7 22 0l2 25q-13 5-26 0z"/>';
-    var FACE = '<circle class="skin" cx="15.5" cy="21" r="3.2"/><circle class="skin" cx="44.5" cy="21" r="3.2"/><circle class="skin" cx="30" cy="20" r="14.5"/>' +
-      '<path class="beard" d="M17.5 23c1 9 6 13 12.5 13s11.5-4 12.5-13c-3 4-7 6-12.5 6s-9.5-2-12.5-6z"/>' +
-      '<path class="hair" d="M15.5 19c-1-11 6-16 14.5-16s16 5 14.5 16c-2-5-6-8-11-9-6 3-12 4-18 9z"/>' +
-      '<circle cx="24.5" cy="20.5" r="1.9" fill="#1f1b26"/><circle cx="35.5" cy="20.5" r="1.9" fill="#1f1b26"/>' +
-      '<path d="M26 28q4 3 8 0" fill="none" stroke="#4a2c22" stroke-width="1.6" stroke-linecap="round"/>';
-    var BACK = '<circle class="skin" cx="15.5" cy="21" r="3.2"/><circle class="skin" cx="44.5" cy="21" r="3.2"/><circle class="skin" cx="30" cy="20" r="14.5"/>' +
-      '<path class="hair" d="M15.5 21c-1-12 6-18 14.5-18s15.5 6 14.5 18c-1 6-4 10-7 12H22.5c-3-2-6-6-7-12z"/>';
-    var RACKET = '<path d="M46 23L49 9" stroke="#2b2b33" stroke-width="2.6" stroke-linecap="round"/>' +
-      '<ellipse cx="50.5" cy="0" rx="6.5" ry="8.5" transform="rotate(10 50.5 0)" fill="rgba(255,255,255,.12)" stroke="#f2f2f2" stroke-width="2.2"/>';
+    var SPINE = seg(30, 23, 30, 62);
+    var RACKET = seg(47, 10, 49, -2) + '<ellipse class="racket" cx="50" cy="-12" rx="6" ry="8" transform="rotate(10 50 -12)"/>';
     var FIGS = {
-      'me-racket': legs(20, 40) + TORSO + arm(21, 42, 15, 52, 15, 62) +
-        '<g class="swing-arm">' + arm(39, 42, 47, 36, 46, 23) + RACKET + '</g>' + FACE,
-      'opp': legs(20, 40) + TORSO + arm(21, 42, 15, 52, 15, 62) + arm(39, 42, 47, 36, 46, 23) + RACKET + FACE,
-      'me-bat': legs(22, 38) + TORSO +
-        '<g class="bat"><rect x="32.5" y="52" width="3.4" height="9" rx="1.2" fill="#2b2b33"/><rect x="31" y="60" width="6.4" height="30" rx="2.4" fill="#d9a45f"/></g>' +
-        arm(21, 42, 25, 55, 33, 53) + arm(39, 42, 42, 50, 35.5, 54) +
-        FACE + '<path d="M15 18c0-11 7-16 15-16s15 5 15 16z" fill="#1d3f8f"/><path d="M15 18h31" stroke="#1d3f8f" stroke-width="3" stroke-linecap="round"/>',
-      'bowler': legs(18, 42) + TORSO + arm(21, 42, 13, 46, 9, 52) + arm(39, 42, 44, 30, 43, 14) + FACE,
-      'keeper': legs(17, 43) + TORSO + arm(21, 42, 10, 40, 5, 29) + arm(39, 42, 50, 40, 55, 29) +
-        '<circle cx="5" cy="29" r="4.8" fill="#fff"/><circle cx="55" cy="29" r="4.8" fill="#fff"/>' + FACE,
-      'me-kit': legs(22, 38) + '<path d="M23 86L22.5 95M37 86L37.5 95" stroke="#fff" stroke-width="7.4" stroke-linecap="round"/>' +
-        TORSO + '<path class="kit" d="M18 62h24l1 12h-10l-3-4-3 4H17z"/>' + arm(21, 42, 15, 53, 14, 63) + arm(39, 42, 45, 53, 46, 63) +
-        '<text class="num" x="30" y="61" text-anchor="middle">7</text>' + BACK,
-      'me-couch': TORSO + arm(21, 42, 20, 54, 26, 60) + arm(39, 42, 40, 54, 34, 60) + BACK
+      'me-racket': head('r') + SPINE + seg(30, 62, 20, 104) + seg(30, 62, 40, 104) + seg(30, 32, 22, 44, 18, 56) +
+        '<g class="swing-arm">' + seg(30, 32, 43, 26, 47, 10) + RACKET + '</g>',
+      'opp': head('r') + SPINE + seg(30, 62, 20, 104) + seg(30, 62, 40, 104) + seg(30, 32, 22, 44, 18, 56) + seg(30, 32, 43, 26, 47, 10) + RACKET,
+      'me-bat': head('r') + '<path class="helmet" d="M20.5 13a9.5 9.5 0 0 1 19 0z"/><path class="st visor" d="M20 13h22"/>' +
+        SPINE + seg(30, 62, 22, 104) + seg(30, 62, 38, 104) +
+        '<g class="bat"><path class="st grip" d="M38 48v8"/><rect class="blade" x="35" y="55" width="6" height="30" rx="2"/></g>' +
+        seg(30, 32, 33, 43, 38, 48) + seg(30, 32, 40, 38, 39, 48),
+      'bowler': head('r') + SPINE + seg(30, 62, 20, 102) + seg(30, 62, 41, 96, 44, 104) + seg(30, 32, 22, 40, 15, 47) + seg(30, 32, 42, 22, 45, 6) +
+        '<circle class="ball-in-hand" cx="45" cy="3" r="3"/>',
+      'keeper': head('f') + SPINE + seg(30, 62, 16, 104) + seg(30, 62, 44, 104) + seg(30, 32, 18, 24, 8, 14) + seg(30, 32, 42, 24, 52, 14) +
+        '<circle class="glove" cx="8" cy="14" r="4.5"/><circle class="glove" cx="52" cy="14" r="4.5"/>',
+      'me-kit': head('b') + SPINE + seg(30, 62, 23, 104) + seg(30, 62, 37, 104) + seg(30, 32, 21, 46, 18, 58) + seg(30, 32, 39, 46, 42, 58) +
+        '<text class="num" x="44" y="46" text-anchor="middle">7</text>',
+      'me-couch': head('b') + seg(30, 23, 30, 55) + seg(30, 32, 18, 46) + seg(30, 32, 42, 46)
     };
     arcade.querySelectorAll('[data-fig]').forEach(function (el) {
       el.innerHTML = '<svg viewBox="0 0 60 110">' + FIGS[el.dataset.fig] + '</svg>';
