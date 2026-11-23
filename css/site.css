@@ -104,18 +104,18 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 .header-in { max-width: 1120px; margin: 0 auto; height: var(--header-h); display: flex; align-items: center; gap: 24px; padding: 0 96px 0 20px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--fg); text-decoration: none; white-space: nowrap; }
 .wordmark b { color: var(--accent); }
-/* Logo: an N whose diagonal is a glowing bulb filament (ties to the bulb theme switch) */
-.logo { width: 36px; height: 36px; flex: none; overflow: visible; }
+/* Logo: "Constellation N". Five stars trace an N in career order: TCS, Cars24, Paytm, Zeta, then Goldman Sachs (gold, top right) */
+.logo { width: 38px; height: 38px; flex: none; overflow: visible; }
 .logo-bg { fill: #0f1836; stroke: var(--accent); stroke-width: 2; transition: fill .6s, stroke .6s; }
-.logo-stem { fill: none; stroke: #f2f4fb; stroke-width: 4; stroke-linecap: round; transition: stroke .6s; }
-.logo-fil { fill: none; stroke: #ffd166; stroke-width: 3; stroke-linecap: round; filter: drop-shadow(0 0 2.5px rgba(255, 209, 102, .9)); }
-.logo-spark { fill: var(--accent); transform-box: fill-box; transform-origin: center; animation: spark 3.2s ease-in-out infinite; }
-@keyframes spark { 0%, 100% { opacity: .35; transform: scale(.7); } 50% { opacity: 1; transform: scale(1.1); } }
-.brand:hover .logo-fil, .brand:focus-visible .logo-fil { animation: flicker .7s steps(1) 1; }
-@keyframes flicker { 0% { opacity: 1; } 15% { opacity: .2; } 30% { opacity: 1; } 45% { opacity: .4; } 60%, 100% { opacity: 1; } }
+.logo-line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; opacity: .85; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.logo-star { fill: #f2f4fb; transition: fill .6s; }
+.logo-gold { fill: #ffd166; filter: drop-shadow(0 0 2px rgba(255, 209, 102, .9)); transform-box: fill-box; transform-origin: center; animation: goldstar 3.6s ease-in-out infinite; }
+@keyframes goldstar { 0%, 100% { transform: scale(.88); } 50% { transform: scale(1.08); } }
+.brand:hover .logo-line, .brand:focus-visible .logo-line { animation: logodraw .9s var(--ease); }
+@keyframes logodraw { from { stroke-dashoffset: 1; } }
 [data-theme="day"] .logo-bg { fill: #fff6e8; }
-[data-theme="day"] .logo-stem { stroke: #141a30; }
-[data-theme="day"] .logo-fil { stroke: #e08a00; filter: none; }
+[data-theme="day"] .logo-star { fill: #141a30; }
+[data-theme="day"] .logo-gold { fill: #e08a00; filter: none; }
 .site-header nav { flex: 1; min-width: 0; }
 .site-header nav ul { position: relative; display: flex; gap: 4px; justify-content: flex-end; overflow-x: auto; scrollbar-width: none; }
 .site-header nav a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: .95rem; white-space: nowrap; }
@@ -555,7 +555,7 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 /* ===== Pause animations (footer toggle) ===== */
 .still-btn { display: none; }
 .js .still-btn { display: inline; }
-.still .logo-spark, .still .star.tw, .still .cloud, .still .eye, .still .breathe, .still .steam, .still .win.tw, .still .c-star.tw { animation-play-state: paused; }
+.still .logo-gold, .still .star.tw, .still .cloud, .still .eye, .still .breathe, .still .steam, .still .win.tw, .still .c-star.tw { animation-play-state: paused; }
 .still .shooting-star, .still .caret { display: none; }
 
 /* ===== Reveal on scroll ===== */
