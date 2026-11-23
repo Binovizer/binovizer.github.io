@@ -24,9 +24,9 @@
 }
 [data-theme="day"] {
   color-scheme: light;
-  --fg: #1d2440;
-  --muted: #4f5875;
-  --accent: #0b6f9c;
+  --fg: #141a30;
+  --muted: #3d4560;
+  --accent: #075a80;
   --accent-ink: #ffffff;
   --warm: #b86a00;
   --panel: rgba(255, 255, 255, .72);
@@ -63,7 +63,7 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 
 /* ===== Sky (fixed, behind everything) ===== */
 .sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.sky-day { position: absolute; inset: 0; background: linear-gradient(#ffd3a1, #ffe9d2 45%, #fdf3e4); opacity: 0; transition: opacity .9s; }
+.sky-day { position: absolute; inset: 0; background: linear-gradient(#ffe6c7, #fff0df 40%, #fdf6ec); opacity: 0; transition: opacity .9s; }
 [data-theme="day"] .sky-day { opacity: 1; }
 .stars { position: absolute; inset: 0; transition: opacity .9s; }
 [data-theme="day"] .stars, [data-theme="day"] .shooting-star { opacity: 0; }
@@ -94,7 +94,8 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 .c1 { top: 14vh; left: 8%; }
 .c2 { top: 26vh; left: 62%; transform: scale(.7); animation-duration: 80s; }
 .c3 { top: 8vh; left: 82%; transform: scale(.85); animation-duration: 70s; }
-[data-theme="day"] .cloud { opacity: .9; }
+[data-theme="day"] .cloud { opacity: .7; }
+.past-hero .cloud { opacity: 0 !important; } /* clouds belong to the hero, not behind section text */
 @keyframes drift { from { translate: -10vw 0; } to { translate: 10vw 0; } }
 
 /* ===== Header + bulb ===== */
@@ -544,7 +545,7 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
   .toasts { bottom: 12px; }
   .section { padding: 72px 16px; }
   .hero { padding-top: 32px; min-height: 0; }
-  .celestial { display: none; }
+  .celestial, .cloud { display: none; } /* text spans the full width here, so nothing sits behind it */
 }
 
 /* ===== Reduced motion: a calm, complete page ===== */

@@ -140,7 +140,7 @@
   var themeMeta = document.querySelector('meta[name="theme-color"]');
   function syncBulb() {
     var day = root.dataset.theme === 'day';
-    if (themeMeta) themeMeta.content = day ? '#ffd3a1' : '#060a18';
+    if (themeMeta) themeMeta.content = day ? '#ffe6c7' : '#060a18';
     bulb.setAttribute('aria-pressed', String(day));
     bulb.setAttribute('aria-label', day ? 'Lights off (switch to night theme)' : 'Lights on (switch to day theme)');
   }
