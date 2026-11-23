@@ -504,6 +504,22 @@
       return h;
     }
     var SPINE = seg(30, 23, 30, 62);
+    // Football and PS5 keep the detailed cartoon rig (shoulders (21,42), hips (26,66)).
+    function arm(sx, sy, cx, cy, hx, hy) { // shoulder, elbow control point, hand
+      return '<path class="limb-k" d="M' + sx + ' ' + sy + 'Q' + cx + ' ' + cy + ' ' + hx + ' ' + hy + '"/><circle class="skin" cx="' + hx + '" cy="' + hy + '" r="3.6"/>';
+    }
+    function legs(lx, rx) { // foot x positions; feet at y=98
+      return '<path class="limb-l" d="M26 66L' + lx + ' 97"/><path class="limb-l" d="M34 66L' + rx + ' 97"/>' +
+        '<ellipse class="shoe" cx="' + (lx - 1) + '" cy="100" rx="5.5" ry="3.2"/><ellipse class="shoe" cx="' + (rx + 1) + '" cy="100" rx="5.5" ry="3.2"/>';
+    }
+    var TORSO = '<path class="kit" d="M19 41q11-7 22 0l2 25q-13 5-26 0z"/>';
+    var FACE = '<circle class="skin" cx="15.5" cy="21" r="3.2"/><circle class="skin" cx="44.5" cy="21" r="3.2"/><circle class="skin" cx="30" cy="20" r="14.5"/>' +
+      '<path class="beard" d="M17.5 23c1 9 6 13 12.5 13s11.5-4 12.5-13c-3 4-7 6-12.5 6s-9.5-2-12.5-6z"/>' +
+      '<path class="hair" d="M15.5 19c-1-11 6-16 14.5-16s16 5 14.5 16c-2-5-6-8-11-9-6 3-12 4-18 9z"/>' +
+      '<circle cx="24.5" cy="20.5" r="1.9" fill="#1f1b26"/><circle cx="35.5" cy="20.5" r="1.9" fill="#1f1b26"/>' +
+      '<path d="M26 28q4 3 8 0" fill="none" stroke="#4a2c22" stroke-width="1.6" stroke-linecap="round"/>';
+    var BACK = '<circle class="skin" cx="15.5" cy="21" r="3.2"/><circle class="skin" cx="44.5" cy="21" r="3.2"/><circle class="skin" cx="30" cy="20" r="14.5"/>' +
+      '<path class="hair" d="M15.5 21c-1-12 6-18 14.5-18s15.5 6 14.5 18c-1 6-4 10-7 12H22.5c-3-2-6-6-7-12z"/>';
     var RACKET = seg(47, 10, 49, -2) + '<ellipse class="racket" cx="50" cy="-12" rx="6" ry="8" transform="rotate(10 50 -12)"/>';
     var FIGS = {
       'me-racket': head('r') + SPINE + seg(30, 62, 20, 104) + seg(30, 62, 40, 104) + seg(30, 32, 22, 44, 18, 56) +
@@ -515,11 +531,12 @@
         seg(30, 32, 33, 43, 38, 48) + seg(30, 32, 40, 38, 39, 48),
       'bowler': head('r') + SPINE + seg(30, 62, 20, 102) + seg(30, 62, 41, 96, 44, 104) + seg(30, 32, 22, 40, 15, 47) + seg(30, 32, 42, 22, 45, 6) +
         '<circle class="ball-in-hand" cx="45" cy="3" r="3"/>',
-      'keeper': head('f') + SPINE + seg(30, 62, 16, 104) + seg(30, 62, 44, 104) + seg(30, 32, 18, 24, 8, 14) + seg(30, 32, 42, 24, 52, 14) +
-        '<circle class="glove" cx="8" cy="14" r="4.5"/><circle class="glove" cx="52" cy="14" r="4.5"/>',
-      'me-kit': head('b') + SPINE + seg(30, 62, 23, 104) + seg(30, 62, 37, 104) + seg(30, 32, 21, 46, 18, 58) + seg(30, 32, 39, 46, 42, 58) +
-        '<text class="num" x="44" y="46" text-anchor="middle">7</text>',
-      'me-couch': head('b') + seg(30, 23, 30, 55) + seg(30, 32, 18, 46) + seg(30, 32, 42, 46)
+      'keeper': legs(17, 43) + TORSO + arm(21, 42, 10, 40, 5, 29) + arm(39, 42, 50, 40, 55, 29) +
+        '<circle cx="5" cy="29" r="4.8" fill="#fff"/><circle cx="55" cy="29" r="4.8" fill="#fff"/>' + FACE,
+      'me-kit': legs(22, 38) + '<path d="M23 86L22.5 95M37 86L37.5 95" stroke="#fff" stroke-width="7.4" stroke-linecap="round"/>' +
+        TORSO + '<path class="kit" d="M18 62h24l1 12h-10l-3-4-3 4H17z"/>' + arm(21, 42, 15, 53, 14, 63) + arm(39, 42, 45, 53, 46, 63) +
+        '<text class="num" x="30" y="61" text-anchor="middle">7</text>' + BACK,
+      'me-couch': TORSO + arm(21, 42, 20, 54, 26, 60) + arm(39, 42, 40, 54, 34, 60) + BACK
     };
     arcade.querySelectorAll('[data-fig]').forEach(function (el) {
       el.innerHTML = '<svg viewBox="0 0 60 110">' + FIGS[el.dataset.fig] + '</svg>';
@@ -586,17 +603,17 @@
       var g = Game('badminton'), sh = g.stage.querySelector('.shuttlecock');
       var dir, t0, T, p = 0;
       g.stage.dataset.tap = '';
-      g.reset = function () { place(g.stage, sh, 77, 34); };
+      g.reset = function () { place(g.stage, sh, 77, 44); };
       g.start = function () {
         T = 1500; dir = 'in'; t0 = performance.now();
         g.loop(function (now) {
           var dur = dir === 'in' ? T : 450;
           p = (now - t0) / dur;
           if (dir === 'in') {
-            place(g.stage, sh, 77 - 55 * p, 34 - 24 * Math.sin(Math.PI * Math.min(p, 1)) + Math.max(0, p - 1) * 170);
+            place(g.stage, sh, 77 - 54 * p, 44 - 28 * Math.sin(Math.PI * Math.min(p, 1)) + Math.max(0, p - 1) * 150);
             if (p > 1.15) { pop(g.stage, 'Missed!', 20, 60, 'bad'); g.finish('Rally'); }
           } else {
-            place(g.stage, sh, 22 + 55 * p, 30 - 26 * Math.sin(Math.PI * Math.min(p, 1)) + 4 * p);
+            place(g.stage, sh, 23 + 54 * p, 44 - 32 * Math.sin(Math.PI * Math.min(p, 1)));
             if (p >= 1) { dir = 'in'; t0 = now; T = Math.max(560, T * 0.92); }
           }
         });
@@ -638,7 +655,7 @@
         g.loop(function (now) {
           if (state === 'ball') {
             p = (now - t0) / T;
-            var y = p < 0.62 ? 48 + 30 * (p / 0.62) : 78 - 16 * ((p - 0.62) / 0.38);
+            var y = p < 0.62 ? 52 + 28 * (p / 0.62) : 80 - 10 * ((p - 0.62) / 0.38);
             place(g.stage, ball, 80 - 62 * p, y);
             if (p > 1.12) out('Bowled! 🏏');
           } else if (state === 'hit') {
@@ -659,7 +676,7 @@
         if (runsHit === 6) { pop(g.stage, 'SIX! 🚀', 50, 30, 'big'); confetti(g.stage, 30); unlock('six'); }
         else if (runsHit === 4) { pop(g.stage, 'FOUR!', 50, 30, 'big'); confetti(g.stage, 14); }
         else pop(g.stage, runsHit + (runsHit === 1 ? ' run' : ' runs'), 40, 30);
-        hx = 80 - 62 * p; hy = p < 0.62 ? 48 + 30 * (p / 0.62) : 78 - 16 * ((p - 0.62) / 0.38);
+        hx = 80 - 62 * p; hy = p < 0.62 ? 52 + 28 * (p / 0.62) : 80 - 10 * ((p - 0.62) / 0.38);
         state = 'hit'; t0 = performance.now();
       };
       g.reset();
