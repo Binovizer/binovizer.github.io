@@ -1,433 +1,364 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- Website Title -->
-    <title>Mohd Nadeem</title>
-    <li rel="shortcut icon" href="./favicon.ico" />
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    
-    <!-- Font Awesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
-
-    <!-- Pace Configuration -->
-    <script src="./js/pace.js"></script>
-    <link href="./css/pace-theme-center-circle.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/pace-progress.css">
-
-    <!-- WOW Animation -->
-    <link rel="stylesheet" href="css/wow-animate.css">
-    
-    <!-- Modernizr for cross browser capabilities -->
-    
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/moving-stars.css">
-    <!-- <link rel="stylesheet" href="./css/background.css"> -->
-    <!-- <link rel="stylesheet" href="./css/moving-bg.css"> -->
-    <link rel="stylesheet" href="./css/hanging-bulb.css">
-    <link rel="stylesheet" href="./css/circular-navigation.css">
-    <link rel="stylesheet" href="./css/back-to-top.css">
-    <link rel="stylesheet" href="./css/landing.css">
-    <link rel="stylesheet" href="./css/home.css">
-    <link rel="stylesheet" href="./css/bruce.css">
-    <link rel="stylesheet" href="./css/about.css">
-    <link rel="stylesheet" href="./css/work.css">
-    <link rel="stylesheet" href="./css/contact.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    
-    <link rel="stylesheet" href="./css/h-timeline.css">
-    <script src="js/modernizr.js" type="text/javascript"></script>
-    
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mohd Nadeem · VP Engineering, Goldman Sachs</title>
+  <meta name="description" content="Mohd Nadeem: Vice President, Engineering at Goldman Sachs, Hyderabad. About 9 years building billing, payments and fraud-prevention platforms. Open to a quick chat.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://binovizer.github.io/">
+  <meta property="og:title" content="Mohd Nadeem · VP Engineering, Goldman Sachs">
+  <meta property="og:description" content="About 9 years building billing, payments and fraud-prevention platforms. Open to a quick chat about engineering, payments, or a business idea.">
+  <meta property="og:image" content="https://binovizer.github.io/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    // Set theme and js flag before paint to avoid a flash.
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'day' || t === 'night') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script src="js/site.js" defer></script>
 </head>
 <body>
-    <div class="content">
-        <!-- Moving Stars Background -->
-        <div id="bg-back"></div>
-        <div id="bg-mid"></div>
-        <div id="bg-fore"></div>
-        
-        <!-- <div class="background"></div> -->
-        <!-- <canvas></canvas> -->
-    
-        <!-- Hanging Bulb on the right -->
-        <div class="bulb-container">
-            <div class="rope">
-                <div class="glue"></div>
-                <div class="bulb"></div>
-            </div>
-        </div>
-    
-        <!-- Circular Navigation -->
-        <button class="cn-button" id="cn-button">+</button>
-        <div class="cn-wrapper" id="cn-wrapper">
-            <ul>
-                <li><a href="#work"><span class="fa fa-briefcase"></span></a></li>
-                <li><a href="#about"><span class="fa fa-id-card"></span></a></li>
-                <li><a href="#landing"><span class="fa fa-home"></span></a></li>
-                <li><a href="./res/Mohd Nadeem Resume.pdf" download><span class="fa fa-file-pdf-o"></span></a></li>
-                <li><a href="https://www.linkedin.com/in/binovizer/" target="_blank"><span class="fa fa-linkedin"></span></a></li>
-            </ul>
-        </div>
-        <div id="cn-overlay" class="cn-overlay"><p>Click anywhere to EXIT</p></div>
-    
-        <!-- To top button -->
-        <a href="#landing" class="back-to-top">
-            <i class="fa fa-angle-double-up"></i>
-        </a>
-    
-    
-        <!-- Landing Section -->
-        <div id="landing">
-            <!-- ChatBox -->
-            <div id="chatBox">
-                <a href="" class="typewrite" data-period="1000" data-type='[ "Hello there!", "I am Mohd Nadeem.", "I am an App & Web Developer.", "Scroll down to know more", "Do not forget the lights" ]'>
-                    <span class="wrap"><span class="blinking-cursor">|</span></span>
-                </a>
-            </div>
-            <!-- Character -->
-            <img src="img/2-emotion-2.png" id="character" class="img-fluid">
-    
-            <!-- Image after turning light on -->
-            <div id="back-to-work">
-                <div class="desk-image img-fluid"></div>
-                <div class="hire-me">
-                    <a href="#contact">
-                        <img class="img-fluid" src="./img/hire_me.png">
-                    </a>
-                </div>
-                <div class="hire_me_btn_container hidden-sm-up">
-                    <a href="#contact" class="btn btn-primary hire_me_btn btn-lg mx-auto">Hire Me!</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Home Section -->
-        <div id="home">
-            <div class="wow bounceInLeft logoContainer">
-                <img class="logo" src="img/logo.png">
-            </div>
-            <div class="container text-center">
-                <div class="creativity-container wow bounceInDown">
-                    <img src="img/creativity.png" alt="Creativity Image" class="img-fluid">
-                </div>
-                <div class="guy-container">
-                    <img src="img/guy.png" alt="Guy Image" class="img-fluid">
-                </div>
-                <div class="bench-container wow zoomInDown">
-                    <img src="img/bench.png" alt="Bench Image" class="img-fluid">
-                </div>
-            </div>
-            
-        </div>
-    
-        <!-- About Section -->
-        <div id="about" class="py-4">
-            
-            <h1 style="color:yellow;">about</h1>
-            <!-- About Text -->
-            <div class="row no-gutters py-3">
-                <div class="col-10 col-sm-8 col-md-7 mx-auto">
-                    <p class="about-text">
-                        My name is <span class="highlight">Mohd Nadeem</span>. I am an Application and Web Developer based in New Delhi, India  who builds awesome applications for my employers. I've recently <span class="highlight">graduated in IT</span> and now actively Seeking a challenging role with a growing IT Company.
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Services grid -->
-            <div class="row no-gutters py-5">
-                <div class="card-deck col-10 mx-auto">
-                    <div class="card wow bounceInLeft" data-wow-offset="100">
-                        <img class="card-img-top" src="img/top-grid-pic1.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title">Designer</h4>
-                            <p class="card-text">I design!</p>
-                        </div>
-                    </div>
-                    <div class="card wow bounceInLeft" data-wow-offset="100">
-                        <img class="card-img-top" src="img/top-grid-pic2.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title">Thinker</h4>
-                            <p class="card-text">I explore!</p>
-                        </div>
-                    </div>
-                    <div class="card wow bounceInLeft" data-wow-offset="100">
-                        <img class="card-img-top" src="img/top-grid-pic3.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title">Developer</h4>
-                            <p class="card-text">I implement!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- The Timeline -->
-            <section class="cd-horizontal-timeline py-5">
-                <h6 class="wow swing" data-wow-offset="200">Education - Go through the timeline <small>click on the dates</small></h6>
-                <div class="timeline wow swing" data-wow-offset="200">
-                    <div class="events-wrapper">
-                        <div class="events">
-                            <ol>
-                                <li><a href="#0" data-date="01/06/2010" class="selected">1 Jun</a></li>
-                                <li><a href="#0" data-date="05/06/2012">5 Jun</a></li>
-                                <li><a href="#0" data-date="06/08/2013">6 Aug</a></li>
-                                <li><a href="#0" data-date="01/07/2017">1 Jul</a></li>
-                                <li><a href="#0" data-date="23/11/2017">23 Nov</a></li>
-                            </ol>
-                            <span class="filling-line" aria-hidden="true"></span>
-                        </div> <!-- .events -->
-                    </div> <!-- .events-wrapper -->
-                        
-                    <ul class="cd-timeline-navigation">
-                        <li><a href="#0" class="prev inactive">Prev</a></li>
-                        <li><a href="#0" class="next">Next</a></li>
-                    </ul> <!-- .cd-timeline-navigation -->
-                </div> <!-- .timeline -->
-            
-                <div class="events-content">
-                    <ol>
-                        <li class="selected" data-date="01/06/2010">
-                            <h2>High School (10th)</h2>
-                            <em>June 1st, 2010</em>
-                            <p>	
-                                Completed High School from <span class="highlight">JIC Pachenda, Muzaffarnagar</span>  as the <span class="highlight">second topper</span> of class.
-                            </p>
-                        </li>
-            
-                        <li data-date="05/06/2012">
-                            <h2>Intermediate (12th)</h2>
-                            <em>June 5th, 2012</em>
-                            <p>	
-                                Completed Intermediate from <span class="highlight">JIC Pachenda, Muzaffarnagar</span>  as the <span class="highlight">topper</span> of class.
-                            </p>
-                        </li>
+  <a class="skip" href="#main">Skip to content</a>
 
-                        <li data-date="06/08/2013">
-                            <h2>Undergraduate</h2>
-                            <em>August 6th, 2013</em>
-                            <p>	
-                                Started Undergraduation at <span class="highlight">Dr. A.P.J. Abdul Kalam Technical University</span>  as the <span class="highlight">rank opener</span> (lowest rank) of Information Technology branch.
-                            </p>
-                        </li>
-                        <li data-date="01/07/2017">
-                            <h2>Graduated</h2>
-                            <em>July 1st, 2017</em>
-                            <p>	
-                                Graduated in <span class="highlight">Information Technology</span> from <span class="highlight">Dr. A.P.J. Abdul Kalam Technical University</span> with Bachelor of Technology degree.
-                            </p>
-                        </li>
-                        <li data-date="23/11/2017">
-                            <h2>Joined TCS</h2>
-                            <em>November 23rd, 2017</em>
-                            <p>	
-                                Started working in <span class="highlight">Tata Consultancy Services Ltd.</span> as <span class="highlight">Assistant Systems Enginner - Trainee</span>. Won <span class="highlight">Star of the LG</span> and <span class="highlight">Special Initiative</span> Award for ILP performance and winning <span class="highlight">Angular Js Hackathon</span>.
-                            </p>
-                        </li>
+  <!-- Fixed sky behind the whole page -->
+  <div class="sky" aria-hidden="true">
+    <div class="sky-day"></div>
+    <div class="stars" id="stars"></div>
+    <div class="shooting-star"></div>
+    <div class="celestial"></div>
+    <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  </div>
 
-            
-                    </ol>
-                </div> <!-- .events-content -->
-            </section>
-          
-            <div class="clear"></div>
-    
-            <div class="row mb-5 resume web-resume mx-auto">
-                <div class="col-10 col-sm-4 col-md-3 mx-auto my-5 wow bounceInLeft" data-wow-offset="100">
-                    <img src="img/web-dev-skills.png" alt="Web Developer Skills" class="img-fluid">
-                </div>
-                <div class="col-12 col-sm-6 col-md-7 mx-auto my-auto">
-                    <h4>Web Developer Skills</h4>
-                    <p>- HTML5 - CSS3 - Javascript - JavaEE - jQuery - Wordpress - NodeJS - Bootstrap - </p>
-                    <a href="./res/Mohd Nadeem Resume.pdf" class="btn mt-4 resume-btn" download>Web Developer Resume</a>
-                </div>
-            </div>
-            <hr>
-            <div class="row py-2 resume app-resume mx-auto">
-                <div class="col-12 col-sm-6 col-md-6 mx-auto my-auto">
-                    <h4>App Developer Skills</h4>
-                    <p>- Java - Python - C++ - R - SQL - Jersey - Hibernate - Struts 2 - </p>
-                    <a href="./res/Mohd Nadeem Resume.pdf" class="btn mt-4 resume-btn" download>App Developer Resume</a>
-                </div>
-                <div class="col-12 col-sm-4 col-md-4 mx-auto my-5 wow bounceInRight" data-wow-offset="100">
-                    <img src="img/app-dev-skills.png" alt="Web Developer Skills" class="img-fluid">
-                </div>
-            </div>
-        </div>
-        
-        <div id="work" class="py-4">
-            <h1 style="color:#EA0357;">work</h1>
-            <div class="work-list row text-center py-4">
-                <div class="buttonList mx-auto">
-                    <button class="btn selected" id="allButton">all</button>
-                    <button class="btn" id="webButton">web</button>
-                    <button class="btn" id="desktopButton">desktop</button>
-                    <button class="btn" id="apiButton">api</button>
-                </div>
-            </div>
-            <ul class="grid cs-style-3">
-                <li class="wow zoomIn all web"  data-wow-offset="100">
-                    <figure>
-                        <img class="img-fluid" src="img/work-test-engine.png" alt="Test Engine">
-                        <figcaption>
-                            <h5>Test Engine</h5>
-                            <a href="#work">Web</a>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="wow zoomIn all web" data-wow-offset="100">
-                    <figure>
-                        <img class="img-fluid" src="img/work-shoppersdealpoint-com.png" alt="ShoppersDealPoint">
-                        <figcaption>
-                            <h5>ShoppersDealPoint</h5>
-                            <a href="#work">Web</a>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="wow zoomIn all web desktop" data-wow-offset="100">
-                    <figure>
-                        <img class="img-fluid" src="img/work-code-player.png" alt="Code Player">
-                        <figcaption>
-                            <h5>Code Player</h5>
-                            <a href="#work">Web</a>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="wow zoomIn all desktop" data-wow-offset="100">
-                    <figure>
-                        <img class="img-fluid" src="img/work-hangman.PNG" alt="Hangman">
-                        <figcaption>
-                            <h5>Hangman</h5>
-                            <a href="#work">Python (PyQt)</a>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="wow zoomIn all desktop" data-wow-offset="100">
-                    <figure>
-                        <img class="img-fluid" src="img/work-loan-management-system.jpg" alt="Loan Management System">
-                        <figcaption>
-                            <h5>Loan Management System</h5>
-                            <a href="#work">Java (Swing)</a>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="wow zoomIn all api" data-wow-offset="100">
-                    <figure>
-                        <img class="img-fluid" src="img/work-rest-api.png" alt="Rest API">
-                        <figcaption>
-                            <h5>Android App Rest API</h5>
-                            <a href="#work">Java (Jersey)</a>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="wow zoomIn all api" data-wow-offset="100">
-                    <figure>
-                        <img class="img-fluid" src="img/work-todo.PNG" alt="Todo API">
-                        <figcaption>
-                            <h5>Todo Rest API (Node JS)</h5>
-                            <a href="#work">Node Js, MongoDB</a>
-                        </figcaption>
-                    </figure>
-                </li>
-            </ul>
-        </div>
-    
-        <!-- Contact Form -->
-        <div id="contact" class="py-4">
-            <div class="container">
-                <h1 style="color:#0AADDE;">connect</h1>
-                <p class="text-center">Want to start something together?</p>
-                <p class="text-center">E-mail me at <span class="highlight" style="color:#0AADDE;">mohd.nadeem3464@gmail.com</span></p>
-                <div class="row no-gutters">
-                    <div class="col-md-6 p-3 mx-auto wow bounceInLeft">
-                        <form action="https://formspree.io/mohd.nadeem3464@gmail.com" method="POST">
-                            <div class="input-group cinput-wrapper my-3">
-                                <!-- <div class="input-group-addon"><span class="fa fa-user"></span></div> -->
-                                <input type="text" class="form-control form-control-lg" name="name" placeholder="&#61447;  Name">
-                            </div>
-                            <div class="input-group cinput-wrapper my-3">
-                                <!-- <div class="input-group-addon"><span class="fa fa-envelope"></span></div> -->
-                                <input type="email" class="form-control form-control-lg" name="email" placeholder="&#61664;  Email">
-                            </div>
-                            <div class="input-group cinput-wrapper my-3">
-                                <!-- <div class="input-group-addon"><span class="fa fa-pencil"></span></div> -->
-                                <textarea type="text" class="form-control form-control-lg" rows="4" name="message" placeholder="&#61504;  Message"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-lg mx-auto d-block my-5">Send <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <footer class="py-4">
-            <div class="container">
-                <div class="row">
-                    <div class="social col-md-5 mr-auto wow tada">
-                        <a target="_blank" href="https://www.facebook.com/binovizer" class="i-wrap facebook-icon">
-                            <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
-                        </a>
-                        <a target="_blank" href="https://twitter.com/ascetic_me" class="i-wrap twitter-icon">
-                            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-                        </a>
-                        <a target="_blank" href="https://plus.google.com/+MohdNadeem3464" class="i-wrap google-icon">
-                            <i class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
-                        </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/binovizer/" class="i-wrap linkedin-icon">
-                            <i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
-                        </a>
-                        <a target="_blank" href="https://github.com/Binovizer/" class="i-wrap github-icon">
-                            <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    <div class="copyright col-md-3 ml-auto pt-3">
-                        <span>&copy; 2017 </span><a href="#landing">Mohd Nadeem</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+  <header class="site-header">
+    <div class="header-in">
+      <a class="brand" href="#landing">Mohd Nadeem</a>
+      <nav aria-label="Sections">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#offshift">Off-shift</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+    <button class="bulb" id="bulb" type="button" aria-pressed="false" aria-label="Lights on (switch to day theme)">
+      <span class="cord"></span>
+      <svg class="bulb-svg" viewBox="0 0 40 56" aria-hidden="true">
+        <rect x="13" y="0" width="14" height="10" rx="2" class="bulb-cap"/>
+        <path class="bulb-glass" d="M20 10c-10 0-17 7-17 16 0 6 3 10 7 13 2 2 3 4 3 7h14c0-3 1-5 3-7 4-3 7-7 7-13 0-9-7-16-17-16z"/>
+        <path class="bulb-fil" d="M15 30q2.5-5 5 0t5 0"/>
+      </svg>
+    </button>
+  </header>
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <main id="main">
+    <!-- HERO -->
+    <section id="landing" class="hero">
+      <div class="hero-text">
+        <p class="hello">Hi, I'm</p>
+        <h1>Mohd Nadeem</h1>
+        <p class="role">Vice President, Engineering · <strong>Goldman Sachs</strong></p>
+        <p class="pitch">About 9 years building billing, payments and fraud-prevention platforms. Based in Hyderabad.</p>
+        <p class="open">Open to a quick chat: engineering, payments, or a business idea.</p>
+        <div class="cta">
+          <a class="btn btn-primary mail-link" href="mailto:mohd.nadeem3464@gmail.com?subject=Hi%20Nadeem">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            Email me
+          </a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/binovizer/" target="_blank" rel="noopener">LinkedIn</a>
+          <!-- Resume button: add back when res/ has the updated PDF -->
+        </div>
+      </div>
 
-    <!-- Main JS -->
-    <script type="text/javascript" src="./js/main.js"></script>
-    
+      <div class="hero-art">
+        <p class="bubble" aria-hidden="true"><span id="typed">Hi, I'm Nadeem 👋</span><span class="caret"></span></p>
+        <button class="char-btn" id="char-btn" type="button" aria-label="Say hi to the character (waves)">
+          <svg class="scene" id="scene" viewBox="0 0 420 330" aria-hidden="true">
+            <!-- plant -->
+            <g class="plant">
+              <path class="leaf" d="M62 236c-14-8-18-24-12-34 10 6 15 20 12 34z"/>
+              <path class="leaf" d="M66 236c4-16 16-26 28-24-2 12-14 22-28 24z"/>
+              <path class="leaf" d="M64 238c-2-14 2-30 10-36 4 10 0 26-10 36z"/>
+              <path class="pot" d="M48 238h34l-5 26H53z"/>
+            </g>
+            <!-- body -->
+            <g class="breathe">
+              <path class="hoodie" d="M140 278c0-46 30-76 70-76s70 30 70 76z"/>
+              <path class="hoodie-shade" d="M196 206l14 18 14-18z"/>
+              <rect class="neck" x="200" y="178" width="20" height="26" rx="8"/>
+              <!-- head -->
+              <g class="head">
+                <circle class="skin" cx="168" cy="140" r="8"/>
+                <circle class="skin" cx="252" cy="140" r="8"/>
+                <circle class="skin" cx="210" cy="136" r="44"/>
+                <path class="hair" d="M166 132c-4-34 22-54 48-52 26 1 44 20 40 50-6-14-18-24-34-26-14 6-34 10-54 28z"/>
+                <path class="beard" d="M172 146c4 26 20 34 38 34s34-8 38-34c-6 12-18 16-38 16s-32-4-38-16z"/>
+                <path class="brow" d="M184 122q10-6 20 0"/>
+                <path class="brow" d="M216 122q10-6 20 0"/>
+                <g class="eyes" id="eyes">
+                  <g class="eye"><ellipse class="eye-w" cx="194" cy="136" rx="8" ry="8.5"/><circle class="pupil" cx="194" cy="137" r="4"/></g>
+                  <g class="eye"><ellipse class="eye-w" cx="226" cy="136" rx="8" ry="8.5"/><circle class="pupil" cx="226" cy="137" r="4"/></g>
+                </g>
+                <path class="smile" d="M198 160q12 9 24 0"/>
+              </g>
+              <!-- waving arm (hidden behind laptop until wave) -->
+              <g class="wave-arm" id="wave-arm">
+                <rect class="hoodie" x="-9" y="-62" width="18" height="66" rx="9"/>
+                <circle class="skin" cx="0" cy="-66" r="10"/>
+              </g>
+            </g>
+            <!-- desk + laptop -->
+            <rect class="desk" x="20" y="264" width="380" height="14" rx="4"/>
+            <rect class="desk-leg" x="40" y="278" width="10" height="52"/>
+            <rect class="desk-leg" x="370" y="278" width="10" height="52"/>
+            <rect class="skin" x="150" y="252" width="26" height="14" rx="7"/>
+            <rect class="skin" x="244" y="252" width="26" height="14" rx="7"/>
+            <path class="laptop" d="M150 196h120a6 6 0 016 6v62H144v-62a6 6 0 016-6z"/>
+            <text class="laptop-logo" x="210" y="238" text-anchor="middle">&lt;/&gt;</text>
+            <!-- mug -->
+            <g class="mug">
+              <path class="steam" d="M332 228q-6-8 0-16t0-16"/>
+              <path class="steam s2" d="M344 228q-6-8 0-16t0-16"/>
+              <rect class="mug-body" x="322" y="234" width="32" height="30" rx="5"/>
+              <path class="mug-handle" d="M354 240h5a7 7 0 010 14h-5"/>
+            </g>
+          </svg>
+        </button>
+      </div>
 
-    <!-- WOW Js -->
-    <script type="text/javascript" src="./js/wow.min.js"></script>
-    <script type="text/javascript" src="./js/wow-custom.js"></script>
-    
-    <!-- Circular Navigation -->
-    <script type="text/javascript" src="./js/cn.js"></script>
-    
-    <!-- Typing Animation at ChatBox -->
-    <script type="text/javascript" src="./js/typing-animation.js"></script>
-    
-    <!-- Changing Character at landing -->
-    <script type="text/javascript" src="./js/character-change.js"></script>
-    
-    <!-- Hanging Bulb on off -->
-    <script type="text/javascript" src="./js/hanging-bulb.js"></script>
-    
-    <script type="text/javascript" src="./js/home.js"></script>
-    
-    <script type="text/javascript" src="./js/h-timeline.js"></script>
-    
-    <script type="text/javascript" src="./js/work.js"></script>
-    
-    <!-- <script type="text/javascript" src="./js/moving-bg.js"></script> -->
-    <script type="text/javascript" src="./js/moving-stars.js"></script>
+      <svg class="skyline" viewBox="0 0 1080 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="city" d="M0 120V70h40V40h30v30h20V55h50v65h20V30h40v90h20V60h30V20h12v-8h6v8h12v100h30V65h50v55h25V45h45v75h20V75h35V35h40v85h30V58h50v62h20V25h35v95h25V70h40v50h30V50h45v70h30V80h40v40h25V40h40v80h30V62h45v58h30V35h40v85z"/>
+        <g class="windows" id="windows"></g>
+      </svg>
+    </section>
 
-    
+    <!-- ABOUT + IMPACT -->
+    <section id="about" class="section">
+      <h2 class="reveal">About</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>I'm a backend engineer turned engineering leader. At <strong>Goldman Sachs</strong> I lead the Billing team: I drive the Platform Upliftment project and set up the Distributor Expense Payment pipeline.</p>
+          <p>Before that I spent eight years shipping systems where correctness matters. At Zeta I built bank application-processing workflows (HDFC, RBL, SBM). At Paytm I built fraud prevention. At Cars24 I built user journeys and telephony. At TCS I built a learning platform used by millions of students.</p>
+          <p>I care about boring, reliable systems, clear ownership, and helping engineers grow.</p>
+        </div>
+        <ul class="impact" aria-label="Impact in numbers">
+          <li class="tile reveal"><b data-count="4" data-suffix="M">4M</b><span>records migrated across databases and Elasticsearch</span><em>Zeta</em></li>
+          <li class="tile reveal"><b data-count="15" data-suffix="K">15K</b><span>transactions per second sustained in load tests</span><em>Zeta</em></li>
+          <li class="tile reveal"><b data-count="40" data-suffix="%">40%</b><span>fewer spam incidents after automated client cleanup</span><em>Paytm</em></li>
+          <li class="tile reveal"><b data-count="50" data-suffix="%">50%</b><span>less virtual-number usage, about $10K saved a month</span><em>Cars24</em></li>
+          <li class="tile reveal"><b>3h→40m</b><span>report-card PDF generation, via multithreading</span><em>TCS</em></li>
+          <li class="tile reveal"><b data-count="10" data-suffix="M">10M</b><span>students on an LMS used by 1000+ institutions</span><em>TCS</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section id="journey" class="section">
+      <h2 class="reveal">The journey</h2>
+      <p class="sub reveal">Scroll and walk it with me.</p>
+      <div class="track" id="track">
+        <div class="rail" aria-hidden="true"><div class="rail-fill" id="rail-fill"></div></div>
+        <div class="walker" id="walker" aria-hidden="true">
+          <svg viewBox="0 0 40 60">
+            <circle class="skin" cx="20" cy="12" r="10"/>
+            <path class="hair" d="M10 11c0-8 6-11 10-11s11 3 10 11c-3-4-7-5-10-5s-7 1-10 5z"/>
+            <rect class="hoodie" x="10" y="22" width="20" height="20" rx="6"/>
+            <rect class="leg l1" x="12" y="40" width="6" height="16" rx="3"/>
+            <rect class="leg l2" x="22" y="40" width="6" height="16" rx="3"/>
+          </svg>
+        </div>
+        <ol class="stations">
+          <li class="station">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <p class="when">2013 – 2017</p>
+              <h3>B.Tech, Information Technology</h3>
+              <p class="where">Ajay Kumar Garg Engineering College, Ghaziabad</p>
+              <ul><li>AIR 119 of 250K+ in TCS CodeVita 2016</li><li>AIR 531 of 150K+ in Code Gladiators 2016</li></ul>
+            </div>
+          </li>
+          <li class="station">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <p class="when">Nov 2017 – Feb 2019</p>
+              <h3>Tata Consultancy Services</h3>
+              <p class="where">Assistant Systems Engineer · Noida</p>
+              <ul><li>Built a learning management system used by 1000+ institutions and 10M+ students</li><li>Cut report-card PDF generation from about 3 hours to 40 minutes</li><li>1st place out of 10,000+ in an internal hackathon</li></ul>
+            </div>
+          </li>
+          <li class="station">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <p class="when">Mar 2019 – Jan 2020</p>
+              <h3>Cars24</h3>
+              <p class="where">Software Engineer · Gurgaon</p>
+              <ul><li>User Journey Management: from store appointments to inspections and bidding</li><li>Telephony revamp: 50% less virtual-number usage (about $10K a month)</li><li>Grievance management system with 100% customer satisfaction</li></ul>
+            </div>
+          </li>
+          <li class="station">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <p class="when">Apr 2020 – Oct 2021</p>
+              <h3>Paytm</h3>
+              <p class="where">Software Engineer · Noida</p>
+              <ul><li>Fraud prevention: User Trust Location and Report Fraud Link</li><li>Spam incidents down 40% with automated dormant-client cleanup</li><li>Rockstar award, Q4 2020-21</li></ul>
+            </div>
+          </li>
+          <li class="station">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <p class="when">Oct 2021 – Dec 2024</p>
+              <h3>Zeta</h3>
+              <p class="where">Software Engineer · Bengaluru</p>
+              <ul><li>Migrated about 4M records across databases and Elasticsearch</li><li>Application-processing workflows for HDFC (PayZapp, ZappCredit), RBL, SBM</li><li>Load-tested to about 15K TPS; mentored the move from SOA to microservices</li></ul>
+            </div>
+          </li>
+          <li class="station now">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="card">
+              <p class="when">Jan 2025 – now</p>
+              <h3>Goldman Sachs</h3>
+              <p class="where">Vice President · Hyderabad</p>
+              <ul><li>Leading the Billing team</li><li>Platform Upliftment project</li><li>Set up the Distributor Expense Payment pipeline</li></ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2 class="reveal">Skills constellation</h2>
+      <p class="sub reveal">Hover, focus or tap a group to light it up.</p>
+      <svg class="constellation" id="constellation" viewBox="0 0 900 420" aria-hidden="true"></svg>
+      <ul class="groups" id="groups">
+        <li class="group" tabindex="0" data-group="0"><h3>Languages</h3><p>Java · Python · C++ · JavaScript · SQL</p></li>
+        <li class="group" tabindex="0" data-group="1"><h3>Spring &amp; JVM</h3><p>Spring Boot · Hibernate · Jersey · JUnit · Mockito</p></li>
+        <li class="group" tabindex="0" data-group="2"><h3>Data</h3><p>PostgreSQL · MySQL · MongoDB · Elasticsearch · Redis</p></li>
+        <li class="group" tabindex="0" data-group="3"><h3>Messaging</h3><p>Kafka · RabbitMQ</p></li>
+        <li class="group" tabindex="0" data-group="4"><h3>Cloud &amp; Ops</h3><p>AWS · Kubernetes · Docker · Grafana · Prometheus</p></li>
+        <li class="group" tabindex="0" data-group="5"><h3>AI</h3><p>LLM automation · AI agents</p></li>
+      </ul>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section">
+      <h2 class="reveal">Things I've built on the side</h2>
+      <div class="projects">
+        <article class="project reveal">
+          <div class="shot"><img src="img/project-hotel-manager.jpg" alt="Hotel Manager dashboard with revenue, occupancy, guests and booking charts" loading="lazy" width="1280" height="800"></div>
+          <div class="project-body">
+            <h3>Hotel Manager</h3>
+            <p>A complete hotel management system for my family's hotel: reservations, rooms, guest folios, GST invoices, night audit, reports and backups. It runs on-premise in Docker.</p>
+            <p class="tags"><span>Spring Boot</span><span>Java</span><span>React</span><span>PostgreSQL</span><span>Docker</span></p>
+            <p class="note">Private code. Happy to demo on a call.</p>
+          </div>
+        </article>
+        <article class="project reveal">
+          <div class="shot"><img src="img/project-hotel-green-galaxy.jpg" alt="Hotel Green Galaxy website home page with a direct booking form" loading="lazy" width="1280" height="800"></div>
+          <div class="project-body">
+            <h3>Hotel Green Galaxy website</h3>
+            <p>A fast, SEO-friendly website for my family's hotel in Jhansi: rooms, amenities, nearby sightseeing, reviews, and a direct-booking form that estimates savings against travel sites and books over WhatsApp.</p>
+            <p class="tags"><span>Next.js</span><span>TypeScript</span><span>Tailwind</span><span>Vercel</span></p>
+            <p><a class="link" href="https://hotelgreengalaxyjhansi.in" target="_blank" rel="noopener">Visit the live site ↗</a></p>
+          </div>
+        </article>
+      </div>
+      <details class="archive reveal">
+        <summary>Archive: student projects from 2016–17</summary>
+        <p>Test Engine · ShoppersDealPoint · Code Player · Hangman (PyQt) · Loan Management System (Java Swing) · Android app REST API (Jersey) · Todo REST API (Node.js, MongoDB)</p>
+      </details>
+
+      <h3 class="awards-title reveal">Awards</h3>
+      <ul class="awards">
+        <li class="award reveal" tabindex="0"><div class="flip"><div class="face front"><span class="medal" aria-hidden="true">🏆</span>Rockstar</div><div class="face back">Paytm, Q4 2020-21</div></div></li>
+        <li class="award reveal" tabindex="0"><div class="flip"><div class="face front"><span class="medal" aria-hidden="true">⭐</span>Special Initiative</div><div class="face back">TCS, plus a hackathon win among 10,000+</div></div></li>
+        <li class="award reveal" tabindex="0"><div class="flip"><div class="face front"><span class="medal" aria-hidden="true">🎓</span>Star of Learners Group</div><div class="face back">TCS initial learning program</div></div></li>
+        <li class="award reveal" tabindex="0"><div class="flip"><div class="face front"><span class="medal" aria-hidden="true">💻</span>CodeVita AIR 119</div><div class="face back">Of 250K+ participants, 2016</div></div></li>
+        <li class="award reveal" tabindex="0"><div class="flip"><div class="face front"><span class="medal" aria-hidden="true">⚔️</span>Code Gladiators AIR 531</div><div class="face back">Of 150K+ participants, 2016</div></div></li>
+      </ul>
+    </section>
+
+    <!-- OFF-SHIFT -->
+    <section id="offshift" class="section">
+      <h2 class="reveal">Off-shift</h2>
+      <p class="sub reveal">Outside work: a badminton court, a chess board and a thriller.</p>
+      <div class="hobbies">
+        <div class="hobby reveal">
+          <svg class="court" id="court" viewBox="0 0 320 200" aria-hidden="true">
+            <line class="net" x1="200" y1="110" x2="200" y2="190"/>
+            <line class="floor" x1="0" y1="190" x2="320" y2="190"/>
+            <g class="player">
+              <circle class="skin" cx="70" cy="96" r="16"/>
+              <path class="hair" d="M54 94c0-14 10-18 16-18s17 4 16 18c-4-6-10-8-16-8s-12 2-16 8z"/>
+              <rect class="hoodie" x="56" y="112" width="28" height="40" rx="9"/>
+              <rect class="skin" x="60" y="150" width="8" height="38" rx="4"/>
+              <rect class="skin" x="72" y="150" width="8" height="38" rx="4"/>
+              <g class="racket-arm" id="racket-arm">
+                <rect class="hoodie" x="-5" y="-34" width="10" height="36" rx="5"/>
+                <line class="racket-handle" x1="0" y1="-34" x2="0" y2="-52"/>
+                <ellipse class="racket-head" cx="0" cy="-64" rx="10" ry="13"/>
+              </g>
+            </g>
+            <g class="shuttle-x" id="shuttle"><g class="shuttle-y"><path class="shuttle" d="M0 0l10-5v10z"/><circle class="shuttle-cork" cx="0" cy="0" r="3"/></g></g>
+          </svg>
+          <div class="hobby-body">
+            <h3>Badminton</h3>
+            <p>Weekday mornings at 7:30 and weekend coaching. Made the top 4 of a 40-team corporate tournament.</p>
+            <button class="btn btn-ghost" id="smash" type="button">Smash 🏸</button>
+          </div>
+        </div>
+        <div class="hobby reveal">
+          <div class="board" id="board" aria-hidden="true"><span class="knight" id="knight">♞</span></div>
+          <div class="hobby-body">
+            <h3>Chess</h3>
+            <p>I play daily and run a small chess YouTube channel.</p>
+            <p class="row"><button class="btn btn-ghost" id="hop" type="button">Move the knight ♞</button>
+              <a class="link" href="https://www.youtube.com/@neemuchess" target="_blank" rel="noopener">Neemu Chess on YouTube ↗</a></p>
+          </div>
+        </div>
+      </div>
+      <p class="reading reveal">📚 Nights end with a thriller on the Kindle. The goal is 100 books.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <h2 class="reveal">Let's talk</h2>
+      <p class="reveal">Engineering, payments, a business idea, or just a quick chat: my inbox is open.</p>
+      <a class="btn btn-primary btn-big mail-link reveal" href="mailto:mohd.nadeem3464@gmail.com?subject=Hi%20Nadeem">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        mohd.nadeem3464@gmail.com
+      </a>
+      <ul class="socials reveal">
+        <li><a href="https://www.linkedin.com/in/binovizer/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-fill"><circle cx="5" cy="5" r="2.4"/><rect x="3" y="9" width="4.2" height="12" rx=".6"/><path d="M10 9h4v1.8c.6-1.1 2-2.1 4-2.1 3.8 0 4.6 2.4 4.6 5.6V21h-4.2v-5.8c0-1.4 0-3.2-1.9-3.2s-2.3 1.5-2.3 3.1V21H10z"/></svg>
+        </a></li>
+        <li><a href="https://github.com/Binovizer" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 16 16" aria-hidden="true" class="ico-fill"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        </a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> Mohd Nadeem. Built by hand: no frameworks, just HTML, CSS and a little JS.</p>
+    <button class="egg-btn" id="egg-btn" type="button">Meet 2017 me</button>
+    <div class="egg" id="egg" hidden>
+      <img src="img/2-emotion-2.png" alt="The cartoon character from the 2017 version of this site" width="160">
+      <p>"Do not forget the lights!" ~ 2017 me</p>
+    </div>
+  </footer>
+
+  <div class="plane" id="plane" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M2 12l20-9-6 18-4-7z"/><path d="M12 14l10-11"/></svg>
+  </div>
 </body>
 </html>
