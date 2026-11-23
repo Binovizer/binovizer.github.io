@@ -872,10 +872,10 @@
   var intentChips = Array.prototype.slice.call(document.querySelectorAll('#intents .chip'));
   var INTENTS = {
     // Subjects: short enough for an inbox preview, playful, and still clear about the ask.
-    chat: ['15 minutes, your calendar, my coffee ☕', 'Hi Nadeem,\n\nCould we grab 15 minutes? I’d love to talk about: \n\nTimes that work for me: ', '#4cc9f0'],
-    biz: ['Got an idea. Needs a payments brain 💡', 'Hi Nadeem,\n\nThe idea in one line: \n\nWhy I thought of you: \n\nWhere it is today: ', '#ffd166'],
-    hire: ['Your next LEVEL UP 🚀 (no LeetCode, promise)', 'Hi Nadeem,\n\nThe role: \nThe team: \nWhy I think it fits you: ', '#3ddc97'],
-    hi: ['Just a ping, no ticket attached 👋', 'Hi Nadeem,\n\nStumbled onto your portfolio and wanted to say hi.\n\nMy best arcade score: ', '#ff7ac6']
+    chat: ['15 minutes, your calendar, my coffee ☕', 'Hi Nadeem,\n\nCoffee’s on me: virtual, or real if we’re both in Hyderabad.\n\nWhat I’d love 15 minutes on: \n\nA few times that work for me: \n\nThanks,\n', '#4cc9f0'],
+    biz: ['Got an idea. Needs a payments brain 💡', 'Hi Nadeem,\n\nI have an idea, and it needs someone who knows where the money actually flows.\n\nThe idea in one line: \nWhy you: \nWhere it is today (napkin / prototype / live): \n\nTalk soon,\n', '#ffd166'],
+    hire: ['Your next LEVEL UP 🚀 (no LeetCode, promise)', 'Hi Nadeem,\n\nSaw the “LEVEL UP: Vice President” moment on your site and thought: why stop there?\n\nThe role: \nThe team and what it’s building: \nWhy I think it fits you: \nThe interview process (honestly): \n\nBest,\n', '#3ddc97'],
+    hi: ['Just a ping, no ticket attached 👋', 'Hi Nadeem,\n\nNo agenda, no ticket, no follow-up meeting. Just saying hi.\n\nHow I found your site: \nMy best arcade score (be honest): \n\nCheers,\n', '#ff7ac6']
   };
   function setIntent(key) {
     var it = INTENTS[key];
