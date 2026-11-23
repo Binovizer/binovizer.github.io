@@ -23,6 +23,10 @@ There are exactly three source files and no third-party JS or CSS. The only exte
 
 - **Engagement layer:** `site.js` defines page-wide `confetti()`, `pop()` and `unlock(id)` near the top. Achievements are the `ACH` list, saved in `localStorage` under `achievements`, with a header trophy counter, panel and toasts; any feature can call `unlock('id')`. Hero chat answers live in `ANSWERS` and the `FUN` facts list, which must stay true. The impact tiles are a quiz: each `.tile.quiz` has `data-correct` (the option index), and the real number in `.ans` stays readable without JS. Journey stations carry `data-year`, and the `#years` chips scroll the walker to them. Contact `#intents` rewrite the `#contact-mail` subject and body.
 
+- **Analytics:** `track(name)` in `site.js` sends GoatCounter events (email-*, play-*, achievement-*, chat-*, theme-*, quiz-done-*). It does nothing until the GoatCounter `<script data-goatcounter=...>` tag is added to `index.html`. Cookie-free, so no consent banner is needed.
+- **SEO:** the JSON-LD `Person` block in `<head>` uses the name "Nadeem" only (never "Mohd"). Update `url` there and in the OG tags if a custom domain is added.
+- **404.html:** a standalone themed page. It uses absolute paths (`/css/site.css`) because GitHub Pages serves it for any missing URL, and it does not load `site.js`.
+
 Conventions that span files:
 
 - **Progressive enhancement:** an inline `<head>` script adds `.js` to `<html>` and applies the saved theme before first paint. Without JS, all content is visible: `.reveal` only hides when `.js` is set, and counters keep their final values in the HTML.

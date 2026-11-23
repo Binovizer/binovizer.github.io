@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#060a18">
+  <meta name="robots" content="noindex">
+  <title>Lost in space · Nadeem</title>
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@500;700&display=swap">
+  <!-- Absolute paths: GitHub Pages serves this page for any missing URL, at any depth. -->
+  <link rel="stylesheet" href="/css/site.css">
+  <script>
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'day' || t === 'night') document.documentElement.dataset.theme = t; } catch (e) {}
+    if (document.documentElement.dataset.theme === 'day') document.querySelector('meta[name="theme-color"]').content = '#ffe6c7';
+    try { if (localStorage.getItem('still') === '1') document.documentElement.classList.add('still'); } catch (e) {}
+  </script>
+  <style>
+    .lost { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; padding: 24px; }
+    .lost .logo { width: 132px; height: 132px; }
+    .lost-star { fill: none; stroke: #ffd166; stroke-width: 1.2; stroke-dasharray: 2 2; transform-box: fill-box; transform-origin: center; animation: lostspin 8s linear infinite; }
+    [data-theme="day"] .lost-star { stroke: #e08a00; }
+    @keyframes lostspin { to { transform: rotate(360deg); } }
+    .lost h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); margin: 0; }
+    .lost p { color: var(--muted); max-width: min(40ch, 100%); margin: 0; }
+    .lost .code { font: 700 .9rem var(--font-display); letter-spacing: .2em; color: var(--accent); }
+    .still .lost-star { animation: none; }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><div class="sky-day"></div><div class="stars" id="stars"></div></div>
+  <main class="lost">
+    <svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect class="logo-bg" x="2" y="2" width="44" height="44" rx="13"/><path class="logo-line" pathLength="1" d="M13 35V13L24 24L35 35V13"/><path class="logo-star" d="M13.00 30.80L14.18 33.82L17.20 35.00L14.18 36.18L13.00 39.20L11.82 36.18L8.80 35.00L11.82 33.82Z"/><path class="logo-star" d="M13.00 8.80L14.18 11.82L17.20 13.00L14.18 14.18L13.00 17.20L11.82 14.18L8.80 13.00L11.82 11.82Z"/><path class="logo-star" d="M24.00 19.80L25.18 22.82L28.20 24.00L25.18 25.18L24.00 28.20L22.82 25.18L19.80 24.00L22.82 22.82Z"/><path class="logo-star" d="M35.00 30.80L36.18 33.82L39.20 35.00L36.18 36.18L35.00 39.20L33.82 36.18L30.80 35.00L33.82 33.82Z"/><path class="lost-star" d="M35.00 7.00L36.68 11.32L41.00 13.00L36.68 14.68L35.00 19.00L33.32 14.68L29.00 13.00L33.32 11.32Z"/></svg>
+    <p class="code">404</p>
+    <h1>This star isn’t in the constellation</h1>
+    <p>The page you’re looking for drifted out of orbit. The rest of the sky is right where you left it.</p>
+    <a class="btn btn-primary" href="/">Back to the night sky</a>
+  </main>
+  <script>
+    // A light scatter of stars, like the home page sky.
+    (function () {
+      var box = document.getElementById('stars');
+      for (var i = 0; i < 70; i++) {
+        var s = document.createElement('span'), z = 1 + Math.random() * 1.6;
+        s.className = 'star' + (i % 3 ? '' : ' tw');
+        s.style.cssText = 'left:' + Math.random() * 100 + '%;top:' + Math.random() * 90 + '%;width:' + z + 'px;height:' + z + 'px;--d:' + (2 + Math.random() * 4) + 's';
+        box.appendChild(s);
+      }
+    })();
+  </script>
+</body>
+</html>
