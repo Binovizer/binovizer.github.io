@@ -656,7 +656,7 @@
           if (state === 'ball') {
             p = (now - t0) / T;
             var y = p < 0.62 ? 52 + 28 * (p / 0.62) : 80 - 10 * ((p - 0.62) / 0.38);
-            place(g.stage, ball, 80 - 62 * p, y);
+            place(g.stage, ball, 84 - 66 * p, y);
             if (p > 1.12) out('Bowled! 🏏');
           } else if (state === 'hit') {
             var k = (now - t0) / 650;
@@ -676,7 +676,7 @@
         if (runsHit === 6) { pop(g.stage, 'SIX! 🚀', 50, 30, 'big'); confetti(g.stage, 30); unlock('six'); }
         else if (runsHit === 4) { pop(g.stage, 'FOUR!', 50, 30, 'big'); confetti(g.stage, 14); }
         else pop(g.stage, runsHit + (runsHit === 1 ? ' run' : ' runs'), 40, 30);
-        hx = 80 - 62 * p; hy = p < 0.62 ? 52 + 28 * (p / 0.62) : 80 - 10 * ((p - 0.62) / 0.38);
+        hx = 84 - 66 * p; hy = p < 0.62 ? 52 + 28 * (p / 0.62) : 80 - 10 * ((p - 0.62) / 0.38);
         state = 'hit'; t0 = performance.now();
       };
       g.reset();

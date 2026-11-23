@@ -341,9 +341,9 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 /* badminton */
 .stage-court { background: linear-gradient(#1d7a4f, #155c3b); }
 .stage-court::after { content: ""; position: absolute; left: 4%; right: 4%; bottom: 6%; height: 3px; background: rgba(255, 255, 255, .7); }
-.net-post { position: absolute; left: 50%; bottom: 6%; width: 3%; height: 42%; transform: translateX(-50%);
-  border-left: 3px solid #fff; border-right: 3px solid #fff; border-top: 4px solid #fff;
-  background: repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 1px, transparent 1px 5px), repeating-linear-gradient(0deg, rgba(255,255,255,.35) 0 1px, transparent 1px 5px); }
+.net-post { position: absolute; left: 50%; bottom: 6%; width: 4px; height: 42%; transform: translateX(-50%); background: #e9e9e4; border-radius: 2px; }
+.net-post::before { content: ""; position: absolute; top: 0; left: 50%; width: 10px; height: 46%; transform: translateX(-50%);
+  border-top: 4px solid #fff; background: repeating-linear-gradient(0deg, rgba(255,255,255,.55) 0 1px, transparent 1px 5px); }
 .stage-court .fig-me { left: 12%; height: 46%; }
 .stage-court .fig-opp { right: 12%; height: 46%; --line: #ffb38a; }
 .shuttlecock { width: 34px; height: 24px; }
@@ -352,15 +352,19 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 @keyframes racket { 45% { transform: rotate(75deg); } }
 
 /* cricket */
-.stage-pitch { background: linear-gradient(#2e8b57 0 30%, #3a9b62 30% 100%); }
+.stage-pitch { background: #1f5a3a; isolation: isolate; } /* dark stands; the outfield is the curved .boundary */
+.boundary { position: absolute; z-index: -1; left: -20%; right: -20%; top: 20%; height: 160%; background: #3a9b62;
+  border-top: 3px solid rgba(255, 255, 255, .9); border-radius: 50% 50% 0 0 / 22% 22% 0 0; }
 .stage-pitch::before { content: ""; position: absolute; left: 4%; right: 4%; bottom: 4%; height: 36%; background: #d8b878; border-radius: 6px; }
 .crease { position: absolute; left: 17%; bottom: 4%; width: 3px; height: 36%; background: #fff; }
+.crease.far { left: auto; right: 31%; }
 .stumps { position: absolute; left: 6%; bottom: 6%; height: 19%; display: flex; gap: 4px; }
+.stumps.far { left: auto; right: 20%; }
 .stumps i { width: 5px; height: 100%; background: #f4e3c1; border-radius: 2px; transition: transform .3s; transform-origin: bottom; }
 .stumps.out i:nth-child(1) { transform: rotate(-35deg); }
 .stumps.out i:nth-child(3) { transform: rotate(30deg); }
 .stage-pitch .fig-me { left: 9%; height: 48%; }
-.stage-pitch .fig-opp { right: 8%; height: 47%; --line: #ffe08a; }
+.stage-pitch .fig-opp { right: 3%; height: 47%; --line: #ffe08a; }
 .stage-pitch .fig-opp.runup { animation: runup .6s ease-in; }
 @keyframes runup { from { transform: translateX(30%); } }
 .bat { transform-origin: 38px 48px; transform: rotate(140deg); }
