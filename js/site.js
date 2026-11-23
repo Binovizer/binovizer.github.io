@@ -16,6 +16,92 @@
 
   $('year').textContent = new Date().getFullYear();
 
+  /* ---- Shared effects: confetti and floating text (used page-wide) ---- */
+  var COLORS = ['#4cc9f0', '#ffd166', '#ff5c8a', '#3ddc97', '#a78bfa'];
+  function confetti(box, n) {
+    if (reduced) return;
+    var w = box.clientWidth || window.innerWidth, h = box.clientHeight || window.innerHeight;
+    for (var i = 0; i < n; i++) {
+      var c = document.createElement('i');
+      c.className = 'confetto';
+      c.style.cssText = 'left:50%;top:40%;background:' + COLORS[i % COLORS.length] + ';--x:' + rand(-.5, .5) * w + 'px;--y:' + rand(-.5, .55) * h + 'px;--rot:' + rand(-540, 540) + 'deg';
+      box.appendChild(c);
+      setTimeout(c.remove.bind(c), 1200);
+    }
+  }
+  function pop(box, text, x, y, cls) {
+    var d = document.createElement('div');
+    d.className = 'pop' + (cls ? ' ' + cls : '');
+    d.style.left = x + '%'; d.style.top = y + '%';
+    d.textContent = text;
+    box.appendChild(d);
+    setTimeout(d.remove.bind(d), 950);
+  }
+
+  /* ---- Achievements: page-wide, saved on this device ---- */
+  var ACH = [
+    ['bulb', '💡', 'Let there be light', 'Pull the bulb'],
+    ['wave', '👋', 'Hello there', 'Make me wave'],
+    ['chat', '💬', 'Small talk', 'Ask me a question'],
+    ['quiz', '🧠', 'Numbers nerd', 'Finish the impact quiz'],
+    ['journey', '🧭', 'Career explorer', 'Walk the journey to Goldman Sachs'],
+    ['stars', '✨', 'Stargazer', 'Light up a skill constellation'],
+    ['smash', '🏸', 'Smash!', 'Land a perfect smash'],
+    ['six', '🏏', 'Maximum', 'Hit a six'],
+    ['siu', '⚽', 'SIUUU', 'Score a penalty'],
+    ['brilliant', '♞', 'Brilliant ‼', 'Find the shortest knight route'],
+    ['wanted', '🎮', 'Most wanted', 'Reach 3 wanted stars'],
+    ['mail', '✉️', 'Say hi', 'Press Email me']
+  ];
+  var got = [];
+  try { got = JSON.parse(localStorage.getItem('achievements') || '[]') || []; } catch (e) { got = []; }
+  var trophy = $('trophy'), achPanel = $('ach-panel'), achList = $('ach-list'), toasts = $('toasts');
+  function renderAch() {
+    $('ach-count').textContent = got.length;
+    achList.innerHTML = ACH.map(function (a) {
+      var has = got.indexOf(a[0]) >= 0;
+      return '<li class="' + (has ? 'got' : 'locked') + '"><span class="e" aria-hidden="true">' + a[1] + '</span><b>' + (has ? a[2] : 'Locked') +
+        '</b><small>' + a[3] + (has ? ' ✓' : '') + '</small></li>';
+    }).join('');
+  }
+  function toast(text) {
+    var t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = text;
+    toasts.appendChild(t);
+    while (toasts.children.length > 2) toasts.removeChild(toasts.firstChild); // keep it calm during fast play
+    setTimeout(function () { t.classList.add('out'); }, 3200);
+    setTimeout(t.remove.bind(t), 3600);
+  }
+  function unlock(id) {
+    if (got.indexOf(id) >= 0) return;
+    var a = ACH.filter(function (x) { return x[0] === id; })[0];
+    if (!a) return;
+    got.push(id);
+    try { localStorage.setItem('achievements', JSON.stringify(got)); } catch (e) {}
+    renderAch();
+    restartClass(trophy, 'bump', 400);
+    toast(a[1] + ' Achievement unlocked: ' + a[2] + ' (' + got.length + '/' + ACH.length + ')');
+    if (got.length === ACH.length) {
+      setTimeout(function () {
+        toast('🎉 All ' + ACH.length + ' unlocked. You have seen everything. Now say hi!');
+        confetti($('celebrate'), 80);
+      }, 900);
+    }
+  }
+  renderAch();
+  trophy.addEventListener('click', function () {
+    var open = achPanel.hidden;
+    achPanel.hidden = !open;
+    trophy.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', function (e) {
+    if (!achPanel.hidden && !achPanel.contains(e.target) && !trophy.contains(e.target)) { achPanel.hidden = true; trophy.setAttribute('aria-expanded', 'false'); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !achPanel.hidden) { achPanel.hidden = true; trophy.setAttribute('aria-expanded', 'false'); trophy.focus(); }
+  });
+
   /* ---- Sky: stars and lit windows ---- */
   var stars = $('stars'), frag = document.createDocumentFragment();
   for (var i = 0; i < 110; i++) {
@@ -51,32 +137,73 @@
     try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
     syncBulb();
     restartClass(bulb, 'swing', 900);
+    unlock('bulb');
   });
 
-  /* ---- Typewriter ---- */
-  var typed = $('typed');
-  var phrases = ["Hi, I'm Nadeem 👋", 'I lead the billing team at Goldman Sachs.', 'Up for a quick chat?', 'Pull the bulb ☝ top right'];
-  if (reduced) {
-    typed.textContent = "Hi, I'm Nadeem 👋";
-  } else {
-    // Array.from splits by code point, so the emoji are never cut in half.
-    var chars = phrases.map(function (s) { return Array.from(s); });
-    var p = 0, c = chars[0].length, deleting = true;
-    var tick = function () {
-      c += deleting ? -1 : 1;
-      typed.textContent = chars[p].slice(0, c).join('');
-      var delay = deleting ? 30 : 65;
-      if (deleting && c === 0) { deleting = false; p = (p + 1) % chars.length; delay = 400; }
-      else if (!deleting && c === chars[p].length) { deleting = true; delay = 2200; }
-      setTimeout(tick, delay);
-    };
-    setTimeout(tick, 2200); // first phrase is already in the HTML
+  /* ---- Typewriter + talk to the character ---- */
+  var typed = $('typed'), scene = $('scene'), typeTimer, resumeTimer;
+  var phrases = ["Hi, I'm Nadeem 👋", 'I lead the billing team at Goldman Sachs.', 'Ask me something below 👇', 'Pull the bulb ☝ top right'];
+  // Array.from splits by code point, so the emoji are never cut in half.
+  var chars = phrases.map(function (t) { return Array.from(t); });
+  var p = 0, c = chars[0].length, deleting = true;
+  function tick() {
+    c += deleting ? -1 : 1;
+    typed.textContent = chars[p].slice(0, c).join('');
+    var delay = deleting ? 30 : 65;
+    if (deleting && c === 0) { deleting = false; p = (p + 1) % chars.length; delay = 400; }
+    else if (!deleting && c === chars[p].length) { deleting = true; delay = 2200; }
+    typeTimer = setTimeout(tick, delay);
   }
+  if (reduced) typed.textContent = "Hi, I'm Nadeem 👋";
+  else typeTimer = setTimeout(tick, 2200); // first phrase is already in the HTML
+
+  var FUN = [
+    'I ranked 119th out of 250,000+ coders in TCS CodeVita, back in college. 🧑‍💻',
+    'I run a chess YouTube channel, Neemu Chess. Beat my knight game below ♞',
+    'Mornings are for badminton: top 4 out of 40 teams in a corporate tournament. 🏸',
+    'My goal is 100 books. Thrillers, every night before sleep. 📚'
+  ];
+  var funIdx = 0;
+  var ANSWERS = {
+    what: ['happy', 'I lead the billing team at Goldman Sachs: payments, ledgers and pipelines where every number has to add up.'],
+    work: ['happy', 'Yes! A quick chat, a business idea or an engineering problem: press Email me. I reply. ✉️'],
+    bulb: ['wink', 'My first site in 2017 had a bulb too. Pull it, top right ☝ Day mode awaits.']
+  };
+  function say(text, mood) {
+    clearTimeout(typeTimer); clearTimeout(resumeTimer);
+    $('answer').textContent = text;
+    scene.classList.remove('mood-happy', 'mood-surprised', 'mood-wink');
+    void scene.getBoundingClientRect();
+    scene.classList.add('mood-' + mood);
+    if (reduced) { typed.textContent = text; }
+    else {
+      var letters = Array.from(text), k = 0;
+      (function typeOut() {
+        typed.textContent = letters.slice(0, ++k).join('');
+        if (k < letters.length) typeTimer = setTimeout(typeOut, 22);
+      })();
+    }
+    // Go back to the idle loop after a pause.
+    resumeTimer = setTimeout(function () {
+      scene.classList.remove('mood-happy', 'mood-surprised', 'mood-wink');
+      if (reduced) return;
+      c = 0; deleting = false; p = 0; typed.textContent = '';
+      typeTimer = setTimeout(tick, 300);
+    }, 9000);
+  }
+  document.querySelectorAll('#chips .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var q = chip.dataset.q;
+      if (q === 'fun') { say(FUN[funIdx], funIdx % 2 ? 'wink' : 'surprised'); funIdx = (funIdx + 1) % FUN.length; chip.textContent = 'Another fun fact?'; }
+      else say(ANSWERS[q][1], ANSWERS[q][0]);
+      if (q === 'work') wave();
+      unlock('chat');
+    });
+  });
 
   /* ---- Character: wave + eyes ---- */
-  var scene = $('scene');
   function wave() { restartClass(scene, 'waving', 1300); }
-  $('char-btn').addEventListener('click', wave);
+  $('char-btn').addEventListener('click', function () { wave(); unlock('wave'); });
   if (!reduced) setTimeout(wave, 1200);
 
   if (finePointer && !reduced) {
@@ -105,16 +232,12 @@
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
-  var counters = document.querySelectorAll('[data-count]');
-  if (!reduced) counters.forEach(function (el) { el.textContent = '0' + (el.dataset.suffix || ''); });
 
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         en.target.classList.add('in');
-        var n = en.target.querySelector('[data-count]');
-        if (n && !reduced) countUp(n);
         io.unobserve(en.target);
       });
     }, { threshold: .15 });
@@ -129,17 +252,63 @@
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* ---- Impact quiz: guess the number, then see the real one ---- */
+  var quizTiles = document.querySelectorAll('.tile.quiz'), quizRight = 0, quizDone = 0;
+  function quizScore() {
+    $('quiz-score').textContent = quizDone < quizTiles.length
+      ? 'Guess my numbers: ' + quizRight + ' right, ' + (quizTiles.length - quizDone) + ' to go'
+      : 'You got ' + quizRight + ' of ' + quizTiles.length + ' right' + (quizRight === quizTiles.length ? '. Perfect! 🎯' : '. Now you know. 😉');
+  }
+  quizTiles.forEach(function (tile) {
+    var correct = +tile.dataset.correct;
+    tile.querySelectorAll('.opts button').forEach(function (btn, i) {
+      btn.addEventListener('click', function () {
+        if (tile.classList.contains('answered')) return;
+        var ok = i === correct, ans = tile.querySelector('.ans');
+        tile.classList.add('answered', ok ? 'right' : 'wrong');
+        var v = document.createElement('span');
+        v.className = 'verdict';
+        v.textContent = ok ? '✓ You got it' : '✗ You guessed ' + btn.textContent;
+        ans.insertBefore(v, ans.firstChild);
+        var n = ans.querySelector('[data-count]');
+        if (n && !reduced) countUp(n);
+        if (ok) { quizRight++; confetti(tile, 14); }
+        quizDone++;
+        quizScore();
+        ans.setAttribute('tabindex', '-1'); ans.focus({ preventScroll: true });
+        if (quizDone === quizTiles.length) unlock('quiz');
+      });
+    });
+  });
+  if (quizTiles.length) quizScore();
+
   /* ---- Journey: the walker follows scroll ---- */
   var track = $('track'), walker = $('walker'), railFill = $('rail-fill');
   var stations = Array.prototype.slice.call(track.querySelectorAll('.station'));
-  var walkTimer, queued = false;
+  var walkTimer, queued = false, journeyLive = false, walkerTag = $('walker-tag');
   function updateJourney() {
     queued = false;
     var rect = track.getBoundingClientRect(), travel = Math.max(1, rect.height - 60);
     var prog = clamp((window.innerHeight * 0.45 - rect.top) / travel, 0, 1), y = prog * travel;
     walker.style.setProperty('--y', y.toFixed(1) + 'px');
     railFill.style.setProperty('--p', prog.toFixed(4));
-    stations.forEach(function (st) { st.classList.toggle('reached', y + 30 >= st.offsetTop + 22); });
+    var last = -1;
+    stations.forEach(function (st, i) {
+      var r = y + 30 >= st.offsetTop + 22;
+      st.classList.toggle('reached', r);
+      if (r) last = i;
+      // First time a station is reached by scrolling: celebrate it once.
+      if (r && journeyLive && !st.classList.contains('unlocked')) {
+        st.classList.add('unlocked');
+        var yPct = (st.offsetTop + 30) / track.offsetHeight * 100;
+        if (i === stations.length - 1) {
+          pop(track, 'LEVEL UP: Vice President 🚀', 50, yPct, 'big');
+          confetti(track, 40);
+          unlock('journey');
+        } else if (i > 0) pop(track, 'Unlocked: ' + st.querySelector('h3').textContent, 50, yPct);
+      }
+    });
+    walkerTag.textContent = stations[Math.max(0, last)].dataset.year;
     updateNav();
   }
 
@@ -172,6 +341,17 @@
   }, { passive: true });
   window.addEventListener('resize', updateJourney);
   updateJourney();
+  // Stations already passed on load count as unlocked silently.
+  stations.forEach(function (st) { if (st.classList.contains('reached')) st.classList.add('unlocked'); });
+  journeyLive = true;
+  document.querySelectorAll('#years button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      // Scroll so the walker (which sits at 45% of the viewport) lands on this station.
+      var st = stations[+b.dataset.st], rect = track.getBoundingClientRect(), travel = Math.max(1, rect.height - 60);
+      var wantY = clamp(st.offsetTop + 6, 0, travel); // a little past the reach line, so it counts as arrived
+      window.scrollBy({ top: rect.top - (window.innerHeight * 0.45 - wantY), behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
 
   /* ---- Skills constellation (built from the accessible list) ---- */
   var svg = $('constellation'), groups = document.querySelectorAll('#groups .group'), gEls = [];
@@ -209,7 +389,7 @@
     svg.appendChild(g);
     gEls.push(g);
 
-    function on() { li.classList.add('lit'); g.classList.add('lit'); }
+    function on() { li.classList.add('lit'); g.classList.add('lit'); unlock('stars'); }
     function off() { li.classList.remove('lit'); g.classList.remove('lit'); }
     li.addEventListener('mouseenter', on); li.addEventListener('mouseleave', off);
     li.addEventListener('focus', on); li.addEventListener('blur', off);
@@ -285,26 +465,6 @@
       el.innerHTML = '<svg viewBox="0 0 60 110">' + FIGS[el.dataset.fig] + '</svg>';
     });
 
-    var COLORS = ['#4cc9f0', '#ffd166', '#ff5c8a', '#3ddc97', '#a78bfa'];
-    function confetti(stage, n) {
-      if (reduced) return;
-      var w = stage.clientWidth, h = stage.clientHeight;
-      for (var i = 0; i < n; i++) {
-        var c = document.createElement('i');
-        c.className = 'confetto';
-        c.style.cssText = 'left:50%;top:40%;background:' + COLORS[i % COLORS.length] + ';--x:' + rand(-.5, .5) * w + 'px;--y:' + rand(-.5, .55) * h + 'px;--rot:' + rand(-540, 540) + 'deg';
-        stage.appendChild(c);
-        setTimeout(c.remove.bind(c), 1200);
-      }
-    }
-    function pop(stage, text, x, y, cls) {
-      var d = document.createElement('div');
-      d.className = 'pop' + (cls ? ' ' + cls : '');
-      d.style.left = x + '%'; d.style.top = y + '%';
-      d.textContent = text;
-      stage.appendChild(d);
-      setTimeout(d.remove.bind(d), 950);
-    }
     function place(stage, el, x, y) { // x, y in % of the stage
       el.style.transform = 'translate(' + (x / 100 * stage.clientWidth - el.offsetWidth / 2) + 'px,' + (y / 100 * stage.clientHeight - el.offsetHeight / 2) + 'px)';
     }
@@ -382,7 +542,7 @@
       g.action = function () {
         restartClass(g.stage, 'swinging', 300);
         if (!g.running || dir !== 'in' || p < 0.78 || p > 1.1) return;
-        if (Math.abs(p - 0.95) < 0.06) { g.setScore(g.score + 2); pop(g.stage, 'SMASH! +2', 30, 30, 'big'); confetti(g.stage, 12); }
+        if (Math.abs(p - 0.95) < 0.06) { g.setScore(g.score + 2); pop(g.stage, 'SMASH! +2', 30, 30, 'big'); confetti(g.stage, 12); unlock('smash'); }
         else { g.setScore(g.score + 1); pop(g.stage, '+1', 24, 30); }
         if (g.score >= 10 && g.score % 10 < 2) pop(g.stage, 'On fire 🔥', 50, 20, 'big');
         dir = 'out'; t0 = performance.now();
@@ -434,7 +594,7 @@
         var d = Math.abs(p - 0.93);
         runsHit = d <= 0.03 ? 6 : d <= 0.06 ? 4 : d <= 0.1 ? 2 : 1;
         balls++; chip(String(runsHit)); g.setScore(g.score + runsHit);
-        if (runsHit === 6) { pop(g.stage, 'SIX! 🚀', 50, 30, 'big'); confetti(g.stage, 30); }
+        if (runsHit === 6) { pop(g.stage, 'SIX! 🚀', 50, 30, 'big'); confetti(g.stage, 30); unlock('six'); }
         else if (runsHit === 4) { pop(g.stage, 'FOUR!', 50, 30, 'big'); confetti(g.stage, 14); }
         else pop(g.stage, runsHit + (runsHit === 1 ? ' run' : ' runs'), 40, 30);
         hx = 80 - 62 * p; hy = p < 0.62 ? 48 + 30 * (p / 0.62) : 78 - 16 * ((p - 0.62) / 0.38);
@@ -465,7 +625,7 @@
           kicks++;
           if (kd === dir) { pop(g.stage, 'Saved! 🧤', 50, 60, 'big bad'); }
           else {
-            g.setScore(g.score + 1);
+            g.setScore(g.score + 1); unlock('siu');
             restartClass(goal, 'ripple', 500); restartClass(siu, 'show', 1200); restartClass(kicker, 'jump', 900);
             confetti(g.stage, 25);
           }
@@ -533,7 +693,7 @@
         if (!b || !g.running || !b.classList.contains('legal')) return;
         kn = +b.dataset.i; moves++;
         if (kn === pawn) {
-          if (moves <= minMoves) { g.setScore(g.score + 2); pop(g.stage, 'Brilliant ‼ +2', 50, 45, 'big'); confetti(g.stage, 16); }
+          if (moves <= minMoves) { g.setScore(g.score + 2); pop(g.stage, 'Brilliant ‼ +2', 50, 45, 'big'); confetti(g.stage, 16); unlock('brilliant'); }
           else { g.setScore(g.score + 1); pop(g.stage, 'Captured! +1', 50, 45); }
           spawn();
         }
@@ -575,6 +735,7 @@
         streak++;
         var s = Math.min(5, Math.floor(streak / 3)), pts = 1 + s;
         stars(s); g.setScore(g.score + pts);
+        if (s >= 3) unlock('wanted');
         pop(g.stage, '+' + pts, 50, 55);
         if (s === 5 && !maxed) { maxed = true; pop(g.stage, 'MAX WANTED ★★★★★', 50, 30, 'big'); confetti(g.stage, 30); }
         next();
@@ -627,10 +788,26 @@
     });
   })();
 
-  /* ---- Email: paper plane, then open the mail app ---- */
-  var plane = $('plane');
+  /* ---- Email: intent chips pre-fill the mail, paper plane, then open the mail app ---- */
+  var plane = $('plane'), contactMail = $('contact-mail');
+  var INTENTS = {
+    chat: ['Quick chat', 'Hi Nadeem,\n\nWould love a quick chat about ', '#4cc9f0'],
+    biz: ['Business idea', 'Hi Nadeem,\n\nI have an idea I would like to run by you: ', '#ffd166'],
+    hire: ['Opportunity', 'Hi Nadeem,\n\nI am reaching out about a role: ', '#3ddc97'],
+    hi: ['Just saying hi', 'Hi Nadeem,\n\nFound your portfolio and wanted to say hi! ', '#ff7ac6']
+  };
+  function setIntent(key) {
+    var it = INTENTS[key];
+    contactMail.href = 'mailto:mohd.nadeem3464@gmail.com?subject=' + encodeURIComponent(it[0]) + '&body=' + encodeURIComponent(it[1]);
+    contactMail.dataset.plane = it[2];
+    document.querySelectorAll('#intents .chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.intent === key)); });
+  }
+  document.querySelectorAll('#intents .chip').forEach(function (c) { c.addEventListener('click', function () { setIntent(c.dataset.intent); }); });
+  setIntent('chat');
   document.querySelectorAll('.mail-link').forEach(function (a) {
     a.addEventListener('click', function (e) {
+      unlock('mail');
+      plane.style.color = a.dataset.plane || '';
       if (reduced || e.metaKey || e.ctrlKey || e.shiftKey || a._sent) return; // second click goes straight through
       e.preventDefault();
       a._sent = true;

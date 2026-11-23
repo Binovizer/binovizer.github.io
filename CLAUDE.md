@@ -21,6 +21,8 @@ There are exactly three source files and no third-party JS or CSS. The only exte
 
 - **Off-shift arcade** (`#arcade`): five mini-games in WAI-ARIA tabs. Each is a `Game(key)` in `site.js`, a shared shell with score, best (`localStorage` key `arcade-<key>`), timers, `halt()` and `finish()`, plus `start`, `action` and `reset` per game. Figures are built from the `FIGS` map into `[data-fig]` slots. It is one 60×110 cartoon rig: shoulders at (21,42), hips at (26,66), feet at y≈100, with limbs drawn as round-capped strokes by `arm()` and `legs()`. Add `.mirror` to face a figure left. Only the selected tab's game runs, and switching tabs halts it.
 
+- **Engagement layer:** `site.js` defines page-wide `confetti()`, `pop()` and `unlock(id)` near the top. Achievements are the `ACH` list, saved in `localStorage` under `achievements`, with a header trophy counter, panel and toasts; any feature can call `unlock('id')`. Hero chat answers live in `ANSWERS` and the `FUN` facts list, which must stay true. The impact tiles are a quiz: each `.tile.quiz` has `data-correct` (the option index), and the real number in `.ans` stays readable without JS. Journey stations carry `data-year`, and the `#years` chips scroll the walker to them. Contact `#intents` rewrite the `#contact-mail` subject and body.
+
 Conventions that span files:
 
 - **Progressive enhancement:** an inline `<head>` script adds `.js` to `<html>` and applies the saved theme before first paint. Without JS, all content is visible: `.reveal` only hides when `.js` is set, and counters keep their final values in the HTML.

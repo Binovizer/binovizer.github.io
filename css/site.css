@@ -432,6 +432,83 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 .egg[hidden] { display: none; }
 @keyframes pop { from { transform: translateY(20px) scale(.8); opacity: 0; } }
 
+/* ===== Engagement layer: chips, chat moods, quiz, journey tags, achievements ===== */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.chip { min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--panel-line); background: var(--panel); color: var(--fg);
+  font: 600 .9rem var(--font-body); cursor: pointer; transition: transform .15s var(--ease), background .2s, border-color .2s; }
+.chip:hover { transform: translateY(-2px); border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.chips, .intents, .years { display: none; flex-wrap: wrap; gap: 8px; }
+.js .chips, .js .intents, .js .years { display: flex; }
+.chips { justify-content: center; margin-top: 10px; }
+.intents { justify-content: center; margin: 4px 0 22px; }
+.years { margin: 0 0 12px; }
+
+/* character moods */
+.mouth-o { fill: #4a2c22; opacity: 0; }
+.smile, .brow { transition: opacity .2s, transform .25s var(--ease); transform-box: fill-box; transform-origin: center; }
+.mood-surprised .mouth-o { opacity: 1; }
+.mood-surprised .smile { opacity: 0; }
+.mood-surprised .brow { transform: translateY(-5px); }
+.mood-happy .smile { transform: scale(1.35); }
+.mood-happy .brow { transform: translateY(-2px); }
+.mood-wink .eye:first-child { animation: none; transform: scaleY(.12); }
+.mood-wink .smile { transform: scale(1.2) rotate(-6deg); }
+
+/* impact quiz */
+.quiz-score { display: none; margin: 0 0 10px; font-weight: 600; color: var(--muted); }
+.js .quiz-score { display: block; }
+.tile.quiz { position: relative; min-height: 168px; }
+.q { margin: 0; font-weight: 600; font-size: .95rem; }
+.opts { display: none; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.js .opts { display: flex; }
+.opts button { flex: 1 1 auto; min-height: 42px; padding: 0 8px; border-radius: 10px; border: 1px solid var(--panel-line); background: transparent; color: var(--fg);
+  font: 700 .95rem var(--font-display); cursor: pointer; transition: border-color .2s, transform .15s; }
+.opts button:hover { border-color: var(--accent); transform: translateY(-1px); }
+.ans { display: flex; flex-direction: column; gap: 6px; height: 100%; outline: none; }
+.js .tile.quiz:not(.answered) .ans { display: none; }
+.js .tile.answered .q, .js .tile.answered .opts { display: none; }
+.tile.answered .ans { animation: pop-in .4s var(--ease); }
+@keyframes pop-in { from { opacity: 0; transform: scale(.92); } }
+.verdict { font-size: .8rem; font-weight: 700; }
+.tile.right { border-color: #3ddc97; }
+.tile.right .verdict { color: #3ddc97; }
+.tile.wrong { border-color: #ff8a8a; animation: shake .4s; }
+.tile.wrong .verdict { color: #ff8a8a; }
+[data-theme="day"] .tile.right .verdict { color: #13804f; }
+[data-theme="day"] .tile.wrong .verdict { color: #c0392b; }
+@keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* journey extras */
+.walker .tag { position: absolute; left: 50%; top: -22px; transform: translateX(-50%); padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--accent-ink);
+  font: 700 .72rem var(--font-display); white-space: nowrap; }
+.station.unlocked .card { animation: unlock .5s var(--ease); }
+@keyframes unlock { 40% { transform: scale(1.02); } }
+
+/* achievements */
+.trophy { display: none; align-items: center; gap: 4px; min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--panel-line);
+  background: var(--panel); color: var(--fg); font: 700 .9rem var(--font-display); cursor: pointer; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.js .trophy { display: inline-flex; }
+.trophy.bump { animation: hop .4s var(--ease); }
+.ach-panel { position: absolute; right: 16px; top: calc(100% + 8px); width: min(340px, calc(100vw - 32px)); max-height: 70vh; overflow: auto; padding: 16px;
+  border-radius: var(--r); background: #121a36; border: 1px solid var(--panel-line); box-shadow: 0 20px 50px rgba(0, 0, 0, .45); z-index: 30; }
+[data-theme="day"] .ach-panel { background: #fff8ee; }
+.ach-panel h2 { font-size: 1.2rem; }
+.ach-panel li { display: grid; grid-template-columns: 34px 1fr; gap: 0 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--panel-line); }
+.ach-panel li .e { grid-row: span 2; font-size: 1.4rem; text-align: center; }
+.ach-panel li.locked .e { filter: grayscale(1); opacity: .35; }
+.ach-panel li.locked b { color: var(--muted); }
+.ach-panel li small { color: var(--muted); }
+.ach-hint { color: var(--muted); font-size: .85rem; margin: 10px 0 0; }
+.toasts { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 70; display: grid; gap: 8px; justify-items: center; pointer-events: none;
+  width: max-content; max-width: calc(100vw - 24px); }
+.toast { padding: 10px 16px; border-radius: 12px; background: var(--fg); color: var(--bg-top); font-weight: 600; text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35); animation: toastIn .35s var(--ease); transition: opacity .3s, transform .3s; }
+[data-theme="day"] .toast { color: #fff; }
+.toast.out { opacity: 0; transform: translateY(10px); }
+@keyframes toastIn { from { opacity: 0; transform: translateY(16px); } }
+.celebrate { position: fixed; inset: 0; z-index: 65; pointer-events: none; overflow: hidden; }
+
 /* ===== Reveal on scroll ===== */
 .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .js .reveal.in { opacity: 1; transform: none; }
@@ -447,6 +524,8 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
   .site-header nav ul { justify-content: flex-start; margin-left: -8px; }
   .site-header nav a { padding: 6px 8px; font-size: .9rem; }
   .bulb { right: 16px; }
+  .trophy { margin-left: auto; min-height: 32px; padding: 0 10px; }
+  .toasts { bottom: 12px; }
   .section { padding: 72px 16px; }
   .hero { padding-top: 32px; min-height: 0; }
   .celestial { display: none; }
