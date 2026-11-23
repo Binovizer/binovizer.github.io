@@ -287,43 +287,98 @@
       </ul>
     </section>
 
-    <!-- OFF-SHIFT -->
+    <!-- OFF-SHIFT ARCADE -->
     <section id="offshift" class="section">
-      <h2 class="reveal">Off-shift</h2>
-      <p class="sub reveal">Outside work: a badminton court, a chess board and a thriller.</p>
-      <div class="hobbies">
-        <div class="hobby reveal">
-          <svg class="court" id="court" viewBox="0 0 320 200" aria-hidden="true">
-            <line class="net" x1="200" y1="110" x2="200" y2="190"/>
-            <line class="floor" x1="0" y1="190" x2="320" y2="190"/>
-            <g class="player">
-              <circle class="skin" cx="70" cy="96" r="16"/>
-              <path class="hair" d="M54 94c0-14 10-18 16-18s17 4 16 18c-4-6-10-8-16-8s-12 2-16 8z"/>
-              <rect class="hoodie" x="56" y="112" width="28" height="40" rx="9"/>
-              <rect class="skin" x="60" y="150" width="8" height="38" rx="4"/>
-              <rect class="skin" x="72" y="150" width="8" height="38" rx="4"/>
-              <g class="racket-arm" id="racket-arm">
-                <rect class="hoodie" x="-5" y="-34" width="10" height="36" rx="5"/>
-                <line class="racket-handle" x1="0" y1="-34" x2="0" y2="-52"/>
-                <ellipse class="racket-head" cx="0" cy="-64" rx="10" ry="13"/>
-              </g>
-            </g>
-            <g class="shuttle-x" id="shuttle"><g class="shuttle-y"><path class="shuttle" d="M0 0l10-5v10z"/><circle class="shuttle-cork" cx="0" cy="0" r="3"/></g></g>
-          </svg>
-          <div class="hobby-body">
-            <h3>Badminton</h3>
-            <p>Weekday mornings at 7:30 with my society group. Made the top 4 of a 40-team corporate tournament.</p>
-            <button class="btn btn-ghost" id="smash" type="button">Smash 🏸</button>
-          </div>
+      <h2 class="reveal">Off-shift arcade</h2>
+      <p class="sub reveal">Five things I play outside work. Each game takes under a minute. Beat your best.</p>
+      <div class="arcade reveal" id="arcade">
+        <div class="tabs" role="tablist" aria-label="Games">
+          <button role="tab" id="tab-badminton" aria-controls="game-badminton" aria-selected="true">🏸 <span>Badminton</span></button>
+          <button role="tab" id="tab-cricket" aria-controls="game-cricket" aria-selected="false" tabindex="-1">🏏 <span>Cricket</span></button>
+          <button role="tab" id="tab-football" aria-controls="game-football" aria-selected="false" tabindex="-1">⚽ <span>Football</span></button>
+          <button role="tab" id="tab-chess" aria-controls="game-chess" aria-selected="false" tabindex="-1">♞ <span>Chess</span></button>
+          <button role="tab" id="tab-ps5" aria-controls="game-ps5" aria-selected="false" tabindex="-1">🎮 <span>PS5</span></button>
         </div>
-        <div class="hobby reveal">
-          <div class="board" id="board" aria-hidden="true"><span class="knight" id="knight">♞</span></div>
-          <div class="hobby-body">
-            <h3>Chess</h3>
-            <p>I play daily and run a small chess YouTube channel.</p>
-            <p class="row"><button class="btn btn-ghost" id="hop" type="button">Move the knight ♞</button>
-              <a class="link" href="https://www.youtube.com/@neemuchess" target="_blank" rel="noopener">Neemu Chess on YouTube ↗</a></p>
+
+        <!-- Badminton -->
+        <div class="game" role="tabpanel" id="game-badminton" aria-labelledby="tab-badminton" data-game="badminton">
+          <div class="game-head">
+            <h3>Rally</h3>
+            <p>My main sport: weekday mornings at 7:30 with my society group, and a top-4 finish among 40 teams at a corporate tournament. Tap when the shuttle reaches you. Perfect timing is a smash.</p>
           </div>
+          <div class="stage stage-court" aria-hidden="true">
+            <div class="net-post"></div>
+            <div class="fig fig-me" data-fig="me-racket"></div>
+            <div class="fig fig-opp" data-fig="opp"></div>
+            <div class="obj shuttlecock"><svg viewBox="0 0 24 16"><path d="M8 2l14-2v16L8 14z" fill="#fff" opacity=".9"/><circle cx="6" cy="8" r="5" fill="#ffd166"/></svg></div>
+          </div>
+          <div class="hud"><span>Rally <b class="score">0</b></span><span>Best <b class="best">0</b></span><span class="msg" aria-live="polite">Press Play.</span></div>
+          <div class="controls"><button class="btn btn-primary play" type="button">Play</button><button class="btn btn-ghost act" type="button" disabled>Hit (Space)</button></div>
+        </div>
+
+        <!-- Cricket -->
+        <div class="game" role="tabpanel" id="game-cricket" aria-labelledby="tab-cricket" data-game="cricket" hidden>
+          <div class="game-head">
+            <h3>One over</h3>
+            <p>Six balls, one innings. Swing when the ball reaches the bat: perfect timing is a six, a mistimed shot gets you bowled.</p>
+          </div>
+          <div class="stage stage-pitch" aria-hidden="true">
+            <div class="crease"></div>
+            <div class="stumps"><i></i><i></i><i></i></div>
+            <div class="fig fig-me" data-fig="me-bat"></div>
+            <div class="fig fig-opp" data-fig="bowler"></div>
+            <div class="obj ball cricket-ball"></div>
+            <div class="overs"></div>
+          </div>
+          <div class="hud"><span>Runs <b class="score">0</b></span><span>Best <b class="best">0</b></span><span class="msg" aria-live="polite">Press Play.</span></div>
+          <div class="controls"><button class="btn btn-primary play" type="button">Play</button><button class="btn btn-ghost act" type="button" disabled>Swing (Space)</button></div>
+        </div>
+
+        <!-- Football -->
+        <div class="game" role="tabpanel" id="game-football" aria-labelledby="tab-football" data-game="football" hidden>
+          <div class="game-head">
+            <h3>Penalty shootout</h3>
+            <p>Ronaldo fan for life, and a Real Madrid fan back in the day. Five penalties: pick a corner and beat the keeper.</p>
+          </div>
+          <div class="stage stage-field" aria-hidden="true">
+            <div class="goal"><div class="fig keeper" data-fig="keeper"></div></div>
+            <div class="spot"></div>
+            <div class="fig fig-me" data-fig="me-kit"></div>
+            <div class="obj ball football"></div>
+            <div class="siu">SIUUU!</div>
+          </div>
+          <div class="hud"><span>Goals <b class="score">0</b>/5</span><span>Best <b class="best">0</b></span><span class="msg" aria-live="polite">Press Play.</span></div>
+          <div class="controls"><button class="btn btn-primary play" type="button">Play</button>
+            <span class="shots"><button class="btn btn-ghost shoot" data-dir="0" type="button" disabled aria-label="Shoot left">⬅ Left</button><button class="btn btn-ghost shoot" data-dir="1" type="button" disabled aria-label="Shoot centre">⬆ Centre</button><button class="btn btn-ghost shoot" data-dir="2" type="button" disabled aria-label="Shoot right">Right ➡</button></span></div>
+        </div>
+
+        <!-- Chess -->
+        <div class="game" role="tabpanel" id="game-chess" aria-labelledby="tab-chess" data-game="chess" hidden>
+          <div class="game-head">
+            <h3>Knight's quest</h3>
+            <p>I play daily and run a small chess channel, <a class="link" href="https://www.youtube.com/@neemuchess" target="_blank" rel="noopener">Neemu Chess on YouTube ↗</a>. You have 30 seconds to capture pawns. Taking the shortest route scores "Brilliant ‼".</p>
+          </div>
+          <div class="stage stage-board">
+            <div class="board5" role="group" aria-label="Chess board, 5 by 5. Highlighted squares are legal knight moves."></div>
+          </div>
+          <div class="hud"><span>Score <b class="score">0</b></span><span>Best <b class="best">0</b></span><span>Time <b class="time">30</b>s</span><span class="msg" aria-live="polite">Press Play.</span></div>
+          <div class="controls"><button class="btn btn-primary play" type="button">Play</button></div>
+        </div>
+
+        <!-- PS5 -->
+        <div class="game" role="tabpanel" id="game-ps5" aria-labelledby="tab-ps5" data-game="ps5" hidden>
+          <div class="game-head">
+            <h3>Button rush</h3>
+            <p>Currently playing <strong>GTA VI</strong>. Hit the button on screen before it vanishes. Streaks raise your wanted level, and a miss is WASTED.</p>
+          </div>
+          <div class="stage stage-room" aria-hidden="true">
+            <div class="tv"><div class="prompt"></div><div class="stars"></div><div class="wasted">WASTED</div></div>
+            <div class="couch"></div>
+            <div class="fig fig-me" data-fig="me-couch"></div>
+          </div>
+          <div class="hud"><span>Score <b class="score">0</b></span><span>Best <b class="best">0</b></span><span>Time <b class="time">20</b>s</span><span class="msg" aria-live="polite">Press Play.</span></div>
+          <div class="controls"><button class="btn btn-primary play" type="button">Play</button>
+            <span class="pad"><button class="padbtn tri" data-b="0" type="button" disabled aria-label="Triangle">△</button><button class="padbtn cir" data-b="1" type="button" disabled aria-label="Circle">○</button><button class="padbtn crs" data-b="2" type="button" disabled aria-label="Cross">✕</button><button class="padbtn sqr" data-b="3" type="button" disabled aria-label="Square">□</button></span></div>
         </div>
       </div>
       <p class="reading reveal">📚 Nights end with a thriller on the Kindle. The goal is 100 books.</p>
