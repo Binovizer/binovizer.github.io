@@ -140,6 +140,27 @@
     walker.style.setProperty('--y', y.toFixed(1) + 'px');
     railFill.style.setProperty('--p', prog.toFixed(4));
     stations.forEach(function (st) { st.classList.toggle('reached', y + 30 >= st.offsetTop + 22); });
+    updateNav();
+  }
+
+  /* ---- Header scroll-spy: mark the section you're in ---- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.site-header nav a'));
+  var navUl = document.querySelector('.site-header nav ul'), header = document.querySelector('.site-header');
+  var spied = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var activeLink = null;
+  function updateNav() {
+    var line = header.offsetHeight + window.innerHeight * 0.3, idx = -1;
+    spied.forEach(function (sec, i) { if (sec && sec.getBoundingClientRect().top <= line) idx = i; });
+    // The last section can be too short to reach the line, so the page bottom counts as inside it.
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) idx = spied.length - 1;
+    var next = navLinks[idx] || null;
+    if (next === activeLink) return;
+    if (activeLink) activeLink.removeAttribute('aria-current');
+    activeLink = next;
+    if (!next) return;
+    next.setAttribute('aria-current', 'location');
+    // On phones the nav scrolls sideways: keep the active link visible without moving the page.
+    if (navUl.scrollWidth > navUl.clientWidth) navUl.scrollTo({ left: next.offsetLeft - 16, behavior: reduced ? 'auto' : 'smooth' });
   }
   window.addEventListener('scroll', function () {
     if (!reduced) {
